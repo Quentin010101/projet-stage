@@ -1,0 +1,63 @@
+h1{
+    color: white;
+}
+section{
+    margin: 30px 3%;
+    padding: 20px;
+    background-color: var(--c-p-1);
+    border-radius: 10px;
+}
+section form > div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+#lieux-modify form{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    background-color: white;
+    opacity: 0.9;
+    padding: 20px;
+}
+#lieux-set form{
+    background-color: white;
+    padding: 30px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+label{
+    color: rgba(0,0,0,0.8);
+}
+input[type='submit']{
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 2px;
+    min-height: 25px;
+    width: 230px;
+}
+input[type='submit'].valid{
+    border: 2px green solid;
+    color: green;
+    background-color: transparent;
+}
+input[type='submit'].inValid{
+    border: 2px red solid;
+    color: white;
+    background-color: red;
+}
+input[type='text'], input[type='number']{
+    min-height: 30px;
+    padding-left: 10px;
+    font-weight: 700;
+}
+#lieux-modify form > div{
+    width: 230px;
+
+}
+
+
+

@@ -1,0 +1,14 @@
+*{
+    font-family: 'Calibri';
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --c-p-1: rgb(53, 56, 226);
+    --c-s-1: rgb(209, 226, 53);
+}
+.error{
+    color: red;
+    font-style: italic;
+    font-size: 0.9em;
+}
