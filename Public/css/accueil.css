@@ -1,0 +1,90 @@
+
+main{
+    padding: 40px;
+    gap: 20px;
+}
+section{
+    width: 60%;
+    padding: 20px;
+    background-color: var(--c-p-1);
+}
+aside{
+    padding: 20px;
+    width: 40%;
+    background-color: var(--c-s-1);
+}
+article figure{
+    float: left;
+    margin: 10px 20px 10px 0;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+} 
+article img{
+    width: 100%;
+    max-width: 500px;
+    max-height: 300px;
+} 
+.content-container{
+    min-height: 300px;
+}
+h1{
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+}
+h2{
+    color:rgba(0, 0, 0, 0.6);
+}
+h3, h4{
+    margin-left: 10px;
+}
+h4{
+    font-size: 0.9em;
+    font-style: italic;
+}
+h5{
+    text-align: end;
+}
+h5 span{
+    color: grey;
+    font-style: italic;
+}
+article{
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
+}
+article div{
+    margin: 10px 0;
+}
+article p{
+    padding: 5px;
+    color: rgba(0, 0, 0, 0.8);
+    word-wrap: break-word;
+}
+hr{
+    margin: 10px 5%;
+}
+
+
+
+
+
+/* Media Query */
+@media (max-width: 800px){
+    main{
+        flex-direction: column;
+    }
+    section, aside{
+        width: inherit;
+    }
+}
+@media (max-width: 600px){
+    main{
+        padding: 10px 0;
+        gap: 20px;
+    }
+    section, aside{
+        width: inherit;
+    }
+}

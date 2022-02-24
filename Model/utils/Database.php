@@ -35,9 +35,8 @@ class Database
         $keys = array_keys($this->variables);
         
 
-         $i=0;
+        $i=0;
         foreach($this->variables as $variable):
-            var_dump(':' . $keys[$i]);
              $stmt->bindParam(':' . $keys[$i], $variable);
              $i++;
         endforeach;

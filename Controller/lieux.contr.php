@@ -1,6 +1,9 @@
 <?php
 
-require_once('Model/Lieux.php');
+
+use Model\Lieux as l;
+use Model\Organisation;
+use Model\utils\Render;
 
 class Lieux
 {
@@ -10,8 +13,14 @@ class Lieux
     private $gps_lat;
     private $gps_long;
 
-    public function show()
-    {
+    public function index()
+    {     
+        if (isset($_SESSION['user-type']) && ($_SESSION['user-type'] == "redacteur-evenement")) :
+                $type = 'evenement';
+        else :
+            return header('Location: /login');
+        endif;
+
         //Default
         $message_update = [];
         $message_set = [];
@@ -24,48 +33,50 @@ class Lieux
             $_SESSION['message_update'] = '';
         endif;
 
-        $location = new Model\Lieux();
+        $organisation = new Organisation;
+        $logo = $organisation->getLogo();
+
+        $location = new l();
         $locations = $location->getLieux();
-        $array = compact('locations', 'message_update', 'message_set');
+        $array = compact('locations', 'message_update', 'message_set','type','logo');
         $view = 'lieux';
 
-        Render::render($view, $array);
+        Render::renderer($view, $array);
     }
 
-    public function modify()
+    public function modify($id)
     {
-
         if (isset($_POST['nom']) && isset($_POST['ville']) && isset($_POST['code_postale']) && isset($_POST['gps_lat']) && isset($_POST['gps_long'])) :
             $this->nom = $_POST['nom'];
             $this->ville = $_POST['ville'];
             $this->code_postale = $_POST['code_postale'];
             $this->gps_lat = $_POST['gps_lat'];
             $this->gps_long = $_POST['gps_long'];
-
+            
             //Update
-            if (isset($_POST['modify']) && isset($_GET['id']) && !empty($_GET['id'])) :
+
+            if (isset($_POST['modify']) && isset($id) && !empty($id)) :
                 $check = $this->checkLieux();
                 if ($check[0]) :
 
-                    $id = $_GET['id'];
+                    
                     $array = ['nom' => $this->nom, 'ville' => $this->ville, 'code_postale' => $this->code_postale, 'gps_lat' => $this->gps_lat, 'gps_long' => $this->gps_long, 'lieux_id' => $id];
-                    $location = new Model\Lieux();
+                    $location = new l();
                     $location->updateLieux($array);
                 else :
                     $_SESSION['message_update'] = $check[1];
                 endif;
             //Delete    
-            elseif (isset($_POST['delete']) && isset($_GET['id']) && !empty($_GET['id'])) :
+            elseif (isset($_POST['delete']) && isset($id) && !empty($id)) :
 
-                $id = $_GET['id'];
                 $array = ['lieux_id' => $id];
-                $location = new Model\Lieux();
+                $location = new l();
                 $location->deleteLieux($array);
 
             endif;
         endif;
 
-        header('Location: ./index.php?page=lieux&method=show');
+        header('Location: /lieux');
     }
 
     public function set()
@@ -82,14 +93,14 @@ class Lieux
                 $check = $this->checkLieux();
                 if ($check[0]) :
                     $array = ['nom' => $this->nom, 'ville' => $this->ville, 'code_postale' => $this->code_postale, 'gps_lat' => $this->gps_lat, 'gps_long' => $this->gps_long];
-                    $location = new Model\Lieux();
+                    $location = new l();
                     $location->setLieux($array);
                 else :
                     $_SESSION['message_set'] = $check[1];
                 endif;
             endif;
         endif;
-        header('Location: ./index.php?page=lieux&method=show');
+        header('Location: /lieux');
     }
 
     private function checkLieux()

@@ -1,0 +1,133 @@
+header{
+    height: var(--header-height);
+}
+footer{
+    height: var(--footer-height);
+}
+header, footer{
+    position: relative;
+    width: 100%;
+    align-items: center;
+    background-color: var(--c-p-1);
+    justify-content: space-between;
+}
+header ul, header li, header div{
+    height: inherit;
+}
+header li{
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+header nav{
+    height: var(--header-height);
+}
+header nav a{
+    border: solid 1px var(--c-p-1);
+    padding: 8px;
+    border-radius: 5px;
+    background-color: white;
+    color: var(--c-p-1);
+}
+header .inscription a{
+    border: solid 1px white;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: var(--c-p-1);
+    color: white;
+}
+.inscription{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+.logo{
+    overflow: hidden;
+    object-fit: fill;
+}
+
+header .logo a{
+    height: inherit;
+}
+header img{
+    height: inherit;
+}
+footer nav, footer ul{
+    height: inherit;
+}
+footer ul{
+    display: flex;
+    align-items: center;
+}
+footer a{
+    color: rgba(0, 0, 0, 0.8);
+    margin: 0 20px;
+}
+.icon-container{
+    margin-right: 20px;
+}
+footer i{
+    color: var(--c-s-1);
+}
+.burger{
+    color: white;
+    margin-left: 20px;
+    display: none;
+    align-items: center;
+}
+.burger i{
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+@media (max-width: 950px){
+    header nav{
+        position: absolute;
+        top: 100%;
+        right: 0;
+        overflow: hidden;
+        max-height: 0px;
+        height: auto !important;
+        transition: all 4s ease-in;
+    }
+    .menu{
+        max-height: fit-content;
+        transition: all 4s;
+    }
+    header nav ul{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: var(--c-p-1);
+        height: fit-content;
+    }
+    header nav li{
+        margin: 5px 0;
+    }
+    .burger{
+        display: flex;
+    }
+    footer a{
+        margin: 0 5px;
+    }
+    .icon-container{
+        margin-right: 10px;
+    }
+
+}
+@media (max-width: 550px){
+    footer ul{
+        margin: 0px 5px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 400px){
+    footer ul{
+        margin: 0px 5px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+

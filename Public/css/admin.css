@@ -1,0 +1,176 @@
+
+body{
+    min-height: 100vh;
+}
+main{
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    display: flex;
+    flex-direction:  column;
+}
+.wrapper{
+    padding: 30px 40px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    min-width: 320px;
+    width: 55%;
+    transition: box-shadow 0.5s 0.5s;
+}
+.wrapper h3{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: rgba(0,0,0,0.7);
+    cursor: pointer;
+}
+.shadow-class{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    transition: box-shadow 0.5s;
+}
+section{
+    width: 100%;
+    display: flex;
+    flex-direction:  column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+#title{
+    align-self: flex-start;
+    background-color: var(--c-s-1);
+    margin: 10px 0;
+    padding: 10px 0;
+    flex-direction:  row;
+    justify-content: space-between;
+}
+#title h1, #title > div{
+    margin: 0 20px;
+    color: rgba(0,0,0,0.8);
+}
+#title a{
+    color: rgb(122, 30, 30);
+}
+#title span{
+    color: var(--c-p-1);
+}
+#organisation form div, #membre-set form div{
+    display: flex;
+    flex-direction: column;
+}
+form input[type='text'], form input[type='number'], form input[type='file'], form input[type='email']{
+    height: 30px;
+    border-radius: 5px;
+    margin: 5px 0 20px 0px;
+    padding: 0 5px;
+}
+form .validate{
+    width:  100px;
+    height: 30px;
+    border: 2px green solid;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
+form .validate:hover{
+    border: 2px green solid;
+    color: green;
+    background-color: white;
+}
+form .inValidate{
+    width:  100px;
+    height: 30px;
+    border: 2px red solid;
+    color: white;
+    background-color: red;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
+form .inValidate:hover{
+    border: 2px red solid;
+    color: red;
+    background-color: white;
+}
+label{
+    color: var(--c-p-1);
+    font-weight: 600;
+}
+.container-file{
+    position: relative;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+#file{
+    position:absolute;
+    font-size: 0.1em;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+#file-label{
+    border: 2px solid var(--c-p-1);
+    padding: 8px;
+    cursor: pointer;
+    width: 170px;
+    text-align: center;
+}
+#membre-modify form{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+#membre-modify form > div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#membre-modify form input{
+    margin: 2px 0;
+}
+
+.tableau {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: var(--c-p-1);
+    padding: 10px 10px;
+}
+.menu{
+    overflow: hidden;
+    max-height: 0px;
+    transition: max-height 0.5s;
+}
+.menu-open{
+    max-height: 1000px;
+    transition: max-height 0.5s linear 0.5s;
+}
+h3 span{
+    transition: transform 0.5s linear;
+}
+.rotate{
+    transform: rotateZ(180deg);
+    transition: transform 0.5s linear 0.5s;
+}
+
+@media (max-width: 1400px){
+    #membre-modify form{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .tableau {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+@media (max-width: 950px){
+    #title{
+        display: flex;
+        flex-direction: column;
+    }
+    .wrapper{
+        width: 80%;
+    }
+    #membre-modify form{
+        grid-template-columns: repeat(3, 25vw);
+    }
+    .tableau {
+        grid-template-columns: repeat(3, 25vw);
+    }
+}

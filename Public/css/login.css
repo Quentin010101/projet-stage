@@ -1,0 +1,59 @@
+main{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.wrapper{
+    padding: 50px 40px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    min-width: 320px;
+    width: 35%;
+}
+.wrapper h1{
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(0,0,0,0.7);
+}
+form div{
+    display: flex;
+    flex-direction: column;
+}
+form input[type='email'], form input[type='password']{
+    height: 30px;
+    border-radius: 5px;
+    margin: 5px 0 30px 0px;
+    padding: 0 5px;
+}
+form input[type='submit']{
+    width:  100px;
+    height: 30px;
+    border: 2px green solid;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
+form input[type='submit']:hover{
+    border: 2px green solid;
+    color: green;
+    background-color: white;
+}
+label{
+    color: var(--c-p-1);
+    font-weight: 600;
+}
+.homePage{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.homePage i, .homePage a{
+    color: var(--c-p-1);
+}
+.homePage i{
+    margin-right: 10px;
+}

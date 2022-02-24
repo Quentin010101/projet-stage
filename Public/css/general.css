@@ -4,11 +4,27 @@
     padding: 0;
 }
 :root{
-    --c-p-1: rgb(53, 56, 226);
-    --c-s-1: rgb(209, 226, 53);
+    --c-p-1: rgb(53, 122, 226);
+    --c-s-1: rgb(166, 179, 52);
+
+    --header-height: 65px;
+    --footer-height: 85px;
 }
 .error{
     color: red;
     font-style: italic;
     font-size: 0.9em;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.flex{
+    display: flex;
+}
+.align-center{
+    display: flex;
+    align-items: center;
 }

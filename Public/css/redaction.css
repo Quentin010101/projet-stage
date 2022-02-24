@@ -1,0 +1,111 @@
+body{
+    min-height: 100vh;
+}
+main{
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    display: flex;
+    flex-direction:  column;
+}
+section{
+    width: 100%;
+}
+.wrapper{
+    padding: 30px 40px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    min-width: 320px;
+    width: 55%;
+}
+.wrapper h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(0,0,0,0.7);
+}
+form div{
+    display: flex;
+    flex-direction: column;
+}
+form input[type='text'], form input[type='date'], form input[type='file'], form select{
+    height: 30px;
+    border-radius: 5px;
+    margin: 5px 0 20px 0px;
+    padding: 0 5px;
+}
+form textarea{
+    resize: none;
+    border-radius: 5px;
+    margin: 5px 0 20px 0px;
+    padding: 5px 5px;
+    height: 100px;
+}
+form input[type='submit']{
+    width:  100px;
+    height: 30px;
+    border: 2px green solid;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
+form input[type='submit']:hover{
+    border: 2px green solid;
+    color: green;
+    background-color: white;
+}
+form a{
+    color: var(--c-p-1);
+    text-decoration: underline;
+}
+label{
+    color: var(--c-p-1);
+    font-weight: 600;
+}
+#redaction{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+#title{
+    align-self: flex-start;
+    background-color: var(--c-s-1);
+    margin: 10px 0;
+    padding: 10px 0;
+    justify-content: space-between;
+}
+#title h1, #title > div{
+    margin: 0 20px;
+    color: rgba(0,0,0,0.8);
+}
+#title a{
+    color: rgb(122, 30, 30);
+}
+span{
+    color: var(--c-p-1);
+}
+.container-file{
+    position: relative;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+#file{
+    position:absolute;
+    font-size: 0.1em;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+#file-label{
+ border: 2px solid var(--c-p-1);
+ padding: 10px;
+ cursor: pointer;
+ width: 170px;
+ text-align: center;
+}
+
+@media (max-width: 800px){
+    #title{
+        display: flex;
+        flex-direction: column;
+    }
+}

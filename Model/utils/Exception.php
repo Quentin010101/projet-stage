@@ -2,8 +2,8 @@
 
 namespace Model\utils;
 
-require_once('Model/utils/Render.php');
-use Render;
+use Model\utils\Render;
+
 
 class Exception
 {
@@ -12,6 +12,6 @@ class Exception
         $message = $e->getMessage();
         $view = 'exception/exception';
         $array = compact('message');
-        Render::render($view, $array);    
+        Render::renderer($view, $array);    
     }
 }

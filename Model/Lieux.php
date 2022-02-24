@@ -4,9 +4,6 @@ namespace Model;
 
 use Exception;
 
-require_once('Model/utils/Database.php');
-
-
 class Lieux
 {
     public function getLieux(){
@@ -26,6 +23,13 @@ class Lieux
         $db = new \Model\utils\DATABASE();
 
         $query = 'INSERT INTO lieux(nom, ville, code_postale, gps_lat, gps_long) VALUES(:nom, :ville, :code_postale, :gps_lat, :gps_long)';
+        $db->action($query,$array);
+
+    }
+    public function setHebergeur(array $array){
+        $db = new \Model\utils\DATABASE();
+
+        $query = 'INSERT INTO hebergeur(publication_id, lieux_id) VALUES(:publication_id, :lieux_id)';
         $db->action($query,$array);
 
     }
