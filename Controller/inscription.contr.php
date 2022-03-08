@@ -38,6 +38,7 @@ class Inscription extends Controller
 
                     //Creation d'un token pour mail de confirmation
                     $token = $this->create_token();
+                    
                     //Creation du compte utilisateur
                     $utilisateur = new Utilisateur();
                     $array = compact('nom', 'prenom', 'email', 'password', 'token');

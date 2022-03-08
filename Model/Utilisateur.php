@@ -88,4 +88,18 @@ class Utilisateur
         $request = $db->action($query, $array);
     }
 
+    public function deleteToken($array){
+        $query = 'UPDATE utilisateur SET token = NULL WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->action($query, $array);
+    }
+
+    public function deleteTokenPassword($array){
+        $query = 'UPDATE utilisateur SET tokenPassword = NULL WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->action($query, $array);
+    }
+
 }

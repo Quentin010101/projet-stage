@@ -24,6 +24,10 @@ class Verify extends Controller
 
                 $array = compact('utilisateur_id');
                 $utilisateur->activateAccount($array);
+
+                $array = compact('utilisateur_id');
+                $utilisateur->deleteToken($array);
+                
                 $this->set_message('Votre compte à bien été activé!', 'success');
                 return header('Location: /login');
                 exit;
@@ -66,24 +70,31 @@ class Verify extends Controller
         endif;
     }
 
-    public function passwordRecoverPost($array)
+    public function passwordRecoverPost()
     {
         if (isset($_POST['password']) && isset($_POST['password-confirmation']) && isset($_POST['token']) && isset($_POST['user-id'])) :
             if (!empty($_POST['password']) && !empty($_POST['password-confirmation']) && !empty($_POST['token']) && !empty($_POST['user-id'])) :
 
-                $password = $_POST['password'];
+                $passwordTemp = $_POST['password'];
                 $passwordConfirmation = $_POST['password-confirmation'];
                 $token = $_POST['token'];
                 $utilisateur_id = $_POST['user-id'];
 
-                if ($password === $passwordConfirmation) :
+                if ($passwordTemp === $passwordConfirmation) :
+                    $password = password_hash($passwordTemp, PASSWORD_DEFAULT);
+
                     $array = compact('utilisateur_id');
                     $utilisateur = new Utilisateur();
                     $token_confirmation = $utilisateur->confirmUserRecoverPassword($array);
 
                     if ($token === $token_confirmation['tokenPassword']) :
+
                         $array = compact('password', 'utilisateur_id');
                         $utilisateur->updatePassword($array);
+
+                        $array = compact('utilisateur_id');
+                        $utilisateur->deleteTokenPassword($array);
+
                         $this->set_message('Votre mot de passe à bien été mis à jour', 'success');
                         header('Location: /login');
                         exit;

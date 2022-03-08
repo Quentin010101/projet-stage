@@ -5,7 +5,7 @@
     <div class="wrapper">
         <h1>Réinitialiser votre mot de passe</h1>
         
-        <form action="/login/passwordRecover" method="post">
+        <form action="/verify/passwordRecoverPost" method="post">
             <div>
                 <label for="">Email</label>
                 <input type="password" name="password" placeholder="Entrer un nouveau password">
