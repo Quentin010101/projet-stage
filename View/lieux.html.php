@@ -36,13 +36,16 @@
                 <label for="long">Longitude</label>
                 <input type="number" name="gps_long" id="long" placeholder="Entrer une longitude" step="any">
             </div>
-            <div class="error">
+            <div id="wrong">
                 <?php
-                if (isset($message_set) && !empty($message_set)) :
-                    foreach ($message_set as $m) :
+                if (isset($messages) && !empty($messages)) :
+                    foreach ($messages as $m) :
+                        if($m['code'] == 'set') :
+
                 ?>
-                        <p><?php echo htmlspecialchars($m); ?></p>
+                        <p><?php echo htmlspecialchars($m['message']); ?></p>
                 <?php
+                        endif;
                     endforeach;
                 endif;
                 ?>
@@ -84,18 +87,23 @@
                 </form>
             <?php endforeach; ?>
         </div>
-        <div class="error">
-            <?php
-            if (isset($message_update) && !empty($message_update)) :
-                foreach ($message_update as $m) :
-            ?>
-                    <p><?php echo htmlspecialchars($m); ?></p>
-            <?php
-                endforeach;
-            endif;
-            ?>
-        </div>
+        <div class="wrong">
+                <?php
+                if (isset($messages) && !empty($messages)) :
+                    foreach ($messages as $m) :
+                        if($m['code'] == 'modify') :
+                ?>
+                        <p><?php echo htmlspecialchars($m['message']); ?></p>
+                <?php
+                        endif;
+                    endforeach;
+                endif;
+                ?>
+            </div>
     </section>
 </main>
+
+
+<?php include('../View/include/_message.html.php'); ?>
 
 <?php include('../View/include/_footer.html.php'); ?>

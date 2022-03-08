@@ -4,7 +4,7 @@ function init(){
     const nav = document.querySelector('nav')
 
     burger.addEventListener('click', function(){
-        nav.classList.toggle('menu')
+        nav.classList.toggle('menu-nav')
     })
 }
 

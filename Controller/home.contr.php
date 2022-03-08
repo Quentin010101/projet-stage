@@ -1,7 +1,10 @@
 <?php
 
-use Model\Organisation;
-use Model\utils\Render;
+namespace App\Controller;
+
+use App\Model\Publication;
+use App\Model\Organisation;
+use App\Model\utils\Render;
 
 
 class Home
@@ -10,13 +13,14 @@ class Home
 
             $organisation = new Organisation;
             $logo = $organisation->getLogo();
+            $organisationName = $organisation->getName();
 
-            $publication = new \Model\Publication();
+            $publication = new Publication();
             $actualite = $publication->getPublication('actualite', '1month');
             $evenement = $publication->getPublication('evenement', '1month');
 
             $view = 'accueil';
-            $array = compact('actualite', 'evenement', 'logo');
+            $array = compact('actualite', 'evenement', 'logo', 'organisationName');
 
             Render::renderer($view, $array); 
         }

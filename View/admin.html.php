@@ -1,5 +1,5 @@
 <?php $pageTitle = 'Espace Administrateur'; ?>
-<?php $pageCss = 'admin.css'; ?>
+<?php $pageCss = 'account.css'; ?>
 <?php $pageScript[] ="menu-admin.js" ?>
 
 
@@ -22,41 +22,41 @@ include('../View/include/_header.html.php');
             <h3>Mise à jour Club: <span><i class="fas fa-angle-down"></i></span></h3>
             <div class="menu">
                 <form action="/admin/adminPostClub" method="post" enctype="multipart/form-data">
-                    <div class="container-file">
-                        <label for="file" id="file-label">Modifier le logo</label>
-                        <input type="file" name="file" id="file">
-                    </div>
+                <?php 
+                    $label = 'Modifiez le logo';
+                    include('../View/include/_input-file.html.php');
+                ?>
                     <div>
                         <label for="">Nom de l'organisation</label>
                         <input type="text" name="nom" value="<?php if (isset($organisation) && !empty($organisation)) : echo htmlspecialchars($organisation['nom']);
-                                                                endif; ?>" placeholder="Entrer un nom">
+                                                                endif; ?>" placeholder="Entrez un nom">
                     </div>
                     <div>
                         <label for="">Numero de téléphone de l'organisation</label>
                         <input type="text" name="tel" value="<?php if (isset($organisation) && !empty($organisation)) : echo htmlspecialchars($organisation['tel']);
-                                                                endif; ?>" placeholder="Entrer un numéro de téléphone">
+                                                                endif; ?>" placeholder="Entrez un numéro de téléphone">
                     </div>
                     <div>
                         <label for="">Email de l'organisation</label>
                         <input type="email" name="email" value="<?php if (isset($organisation) && !empty($organisation)) : echo htmlspecialchars($organisation['email']);
-                                                                endif; ?>" placeholder="Entrer un email">
+                                                                endif; ?>" placeholder="Entrez un email">
                     </div>
                     <div>
                         <label for="">Adresse de l'organisation</label>
                         <input type="text" name="adresse" value="<?php if (isset($organisation) && !empty($organisation)) : echo htmlspecialchars($organisation['adresse']);
-                                                                    endif; ?>" id="" placeholder="Entrer une adresse">
+                                                                    endif; ?>" id="" placeholder="Entrez une adresse">
                     </div>
                     <div>
                         <h4>Nouvelles coordonnées GPS</h4>
                         <div>
                             <label for="">Latitude</label>
                             <input type="number" name="gps_lat" step="any" value="<?php if (isset($organisation) && !empty($organisation)) : echo htmlspecialchars($organisation['gps_lat']);
-                                                                                    endif; ?>" placeholder="Entrer une latitude">
+                                                                                    endif; ?>" placeholder="Entrez une latitude">
                         </div>
                         <div>
                             <label for="">Longitude</label>
                             <input type="number" name="gps_long" step="any" value="<?php if (isset($organisation) && !empty($organisation)) : echo htmlspecialchars($organisation['gps_long']);
-                                                                                    endif; ?>" placeholder="Entrer une longitude">
+                                                                                    endif; ?>" placeholder="Entrez une longitude">
                         </div>
                     </div>
                     <div>
@@ -104,15 +104,15 @@ include('../View/include/_header.html.php');
                 <form action="/admin/adminSetMembre" method="post">
                     <div>
                         <label>Nom</label>
-                        <input type="text" name="nom" placeholder="Entrer un nom">
+                        <input type="text" name="nom" placeholder="Entrez un nom">
                     </div>
                     <div>
                         <label>Prénom</label>
-                        <input type="text" name="prenom" placeholder="Entrer un prénom">
+                        <input type="text" name="prenom" placeholder="Entrez un prénom">
                     </div>
                     <div>
                         <label>Fonction</label>
-                        <input type="text" name="fonction" placeholder="Entrer une fonction">
+                        <input type="text" name="fonction" placeholder="Entrez une fonction">
                     </div>
                     <div>
                         <input type="submit" value="Ajouter" class="validate">
@@ -122,6 +122,8 @@ include('../View/include/_header.html.php');
         </div>
     </section>
 </main>
+
+<?php include('../View/include/_message.html.php'); ?>
 
 <?php
 include('../View/include/_footer.html.php');

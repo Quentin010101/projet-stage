@@ -1,8 +1,10 @@
 <?php
 
-use Model\Publication;
-use Model\Organisation;
-use Model\utils\Render;
+namespace App\Controller;
+
+use App\Model\Publication;
+use App\Model\Organisation;
+use App\Model\utils\Render;
 
 class Actualite
 {

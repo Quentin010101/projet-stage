@@ -41,9 +41,13 @@ header .inscription a{
     align-items: center;
     margin-right: 20px;
 }
+.inscription a{
+    margin: 0 3px;
+}
 .logo{
+    min-width: 100px;
     overflow: hidden;
-    object-fit: fill;
+    object-fit: contain;
 }
 
 header .logo a{
@@ -51,6 +55,7 @@ header .logo a{
 }
 header img{
     height: inherit;
+    width: 100%;
 }
 footer nav, footer ul{
     height: inherit;
@@ -90,7 +95,7 @@ footer i{
         height: auto !important;
         transition: all 4s ease-in;
     }
-    .menu{
+    .menu-nav{
         max-height: fit-content;
         transition: all 4s;
     }

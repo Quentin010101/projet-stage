@@ -1,0 +1,136 @@
+body{
+    min-height: 100vh;
+}
+main{
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    margin: 20px 2%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+}
+section{
+    background-color: white;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: box-shadow 0.4s;
+}
+figure{
+    max-width: 50%;
+    max-height: 300px;
+    overflow: hidden;
+    /* box-shadow: 5px 5px 15px rgba(0,0,0,0.8); */
+}
+figure img{
+    height: 100%;
+    width: 100%;
+}
+hr{
+    color: rgba(0, 0, 0, 0.7);
+    width: 80%;
+    margin: 0 auto;
+}
+section:hover{
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.4s;
+}
+h2{
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    color: rgba(0, 0, 0, 0.7);
+    /* padding: 8px; */
+    margin-bottom: 10px;
+}
+.inner-section{
+    padding: 20px;
+    /* background-color: var(--c-p-1); */
+    /* box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6); */
+}
+.histoire{
+    gap: 20px;
+}
+.histoire h3{
+    color: var(--c-p-1);
+}
+.histoire h4{
+    color: var(--c-s-1);
+}
+.information-general-container{
+    display: flex;
+    gap: 20px;
+}
+.inner-section a{
+    color: rgba(0, 0, 0, 0.7);
+}
+.table{
+    max-width: 800px;
+    border: 2px solid rgba(0, 0, 0, 0.6);
+}
+.table h3{
+    color: rgba(255, 255, 255, 0.9)
+}
+.table h4{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 5px;
+    color: rgba(0, 0, 0, 0.9)
+}
+.table .table-title{
+    background-color: var(--c-s-1);
+    padding: 5px;
+}
+.table > div{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.adresse{
+    margin-top: 10px;
+    font-size: 1.2em;
+    color:var(--c-s-1);
+}
+.adresse address{
+    font-size: 1em;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.7);
+}
+.lien-histoire{
+    border: 1px solid var(--c-p-1);
+    background-color: var(--c-p-1);
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+.lien-histoire:hover{
+    background-color: white;
+}
+.lien-histoire:hover a{
+    color: var(--c-p-1);
+}
+.lien-histoire a{
+    color: white;
+}
+
+@media (max-width: 1400px){
+    .information-general-container{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1100px){
+    main{
+        grid-template-columns: 1fr;
+    }
+    .information-general-container{
+        flex-direction: row;
+    }
+}
+@media (max-width: 700px){
+    main{
+        margin: 20px 0;
+    }
+    .information-general-container{
+        flex-direction: column;
+    }
+}
+@media (max-width: 500px){
+    section{
+        padding: 10px 0;
+    }
+}

@@ -1,8 +1,8 @@
 <?php
 
-namespace Model;
+namespace App\Model;
 
-use Model\utils\Database;
+use App\Model\utils\Database;
 
 class membre
 {

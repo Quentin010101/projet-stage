@@ -1,38 +1,82 @@
 <?php
 
-namespace Model;
+namespace App\Model;
 
-use Model\utils\Database;
+use App\Model\utils\Database;
 
 class Utilisateur
 {
-    public function check($array){
-        $query = 'SELECT * FROM utilisateur WHERE email = :email';
+    public function getUser($array){
+        $query = 'SELECT utilisateur_id, nom, prenom, email, type, actif FROM utilisateur WHERE email = :email';
 
         $db = new Database();
         $request = $db->findOne($query, $array);
 
-        if($request):
-            return $request;
-        else:
-            $_SESSION['message-auth'] = 'Vos identifiants ne sont pas valide.';
-            return header('Location: /login');
-        endif;
-
+        return $request;
     }
 
-    //Enregistrer une personne manuellement
-    // public function test(){
-    //     $query = 'INSERT INTO utilisateur(nom,prenom,email,password,type) VALUES(:nom, :prenom, :email, :password, :type)';
+    public function getPassword($array){
+        $query = 'SELECT password FROM utilisateur WHERE email = :email';
 
-    //     $nom = 'Durand';
-    //     $prenom = 'Sylvain';
-    //     $email = 'redacteur1e@gmail.com';
-    //     $password = password_hash('123', PASSWORD_DEFAULT);
-    //     $type = 'redacteur-evenement';
+        $db = new Database();
+        $request = $db->findOne($query, $array);
 
-    //     $array = compact('nom', 'prenom', 'email', 'password', 'type');
-    //     $db = new Database();
-    //     $db->action($query, $array);
-    // }
+        return $request;
+    }
+
+    public function save($array){
+        $query = 'INSERT INTO utilisateur(nom, prenom, email, password, type, actif, token) VALUES(:nom, :prenom, :email, :password, "user", 0, :token)';
+
+        $db = new Database();
+        $request = $db->action($query, $array);
+
+        return $request;
+    }
+
+    public function getId($array){
+        $query = 'SELECT utilisateur_id FROM utilisateur WHERE email = :email';
+
+        $db = new Database();
+        $request = $db->findOne($query, $array);
+
+        return $request;
+    }
+
+    public function confirmUser($array){
+        $query = 'SELECT token FROM utilisateur WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->findOne($query, $array);
+
+        return $request;
+    }
+
+    public function activateAccount($array){
+        $query = 'UPDATE utilisateur SET actif = 1 WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->action($query, $array); 
+    }
+
+    public function updateUser($array){
+        $query = 'UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->action($query, $array); 
+    }
+
+    public function updateTokenPassword($array){
+        $query = 'UPDATE utilisateur SET tokenPassword = :tokenPassword WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->action($query, $array); 
+    }
+
+    public function updatePassword($array){
+        $query = 'UPDATE utilisateur SET password = :password WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->action($query, $array);
+    }
+
 }

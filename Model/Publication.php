@@ -1,9 +1,9 @@
 <?php
 
-namespace Model;
+namespace App\Model;
 
 use DateTime;
-use Model\utils\Database;
+use App\Model\utils\Database;
 
 class Publication
 {

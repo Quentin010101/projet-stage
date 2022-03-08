@@ -1,25 +1,23 @@
 <?php
 
-use Model\Utilisateur;
-use Model\utils\Render;
+namespace App\Controller;
+
+use App\Model\Utilisateur;
+use App\Model\utils\Render;
 
 
-class login
+class Login extends Controller
 {
     public function index()
     {
 
-        //Gerer les message
-        if (isset($_SESSION['message-auth']) && !empty($_SESSION['message-auth'])) :
-            $message = $_SESSION['message-auth'];
-            unset($_SESSION['message-auth']);
-        endif;
+        $messages = $this->get_message();
 
         $view = 'login';
         $array = [];
-        if (isset($message)) :
-            $array = compact('message');
-        endif;
+
+        $array = compact('messages');
+
         Render::Renderer($view, $array);
     }
 
@@ -35,43 +33,68 @@ class login
 
             // Récupération de l'utilisateur dans la base de donnée
             $user = new Utilisateur();
+            $request = $user->getPassword($array);
 
-            $request = $user->check($array);
+            if ($request == false) {
+                $this->set_message('Vos identifiants ne sont pas valide.', 'error');
+                header('Location: /login');
+                exit;
+            }
+
             $this->checkPassword($password, $request['password']);
-            $this->authentification($request);
-            return header('Location: /home');
+            $this->authentification($array);
 
         else :
-            return header('Location: /login');
+            header('Location: /login');
+            exit;
         endif;
     }
 
+
     private function checkPassword($password, $hash)
-    {
+    {   
         if (password_verify($password, $hash)) :
             return;
         else :
-            $_SESSION['message-auth'] = 'Vos identifiants ne sont pas valide.';
-            return header('Location: /login');
+            $this->set_message('Vos identifiants ne sont pas valide.', 'error');
+            header('Location: /login');
+            exit;
         endif;
     }
 
-    private function authentification($request)
+  
+
+    private function authentification($array)
     {
-        $_SESSION['firstname'] = $request['prenom'];
-        $_SESSION['lastname'] = $request['nom'];
-        $_SESSION['user-type'] = $request['type'];
-        $_SESSION['user-id'] = $request['utilisateur_id'];
+        $utilisateur = new Utilisateur();
+        $request = $utilisateur->getUser($array);
+
+        if($request['actif'] == 0):
+            $this->set_message('Vottre compte n\'est pas activé.', 'error');
+            header('Location: /login');
+            exit;
+        else:
+            $_SESSION['firstname'] = $request['prenom'];
+            $_SESSION['lastname'] = $request['nom'];
+            $_SESSION['user-type'] = $request['type'];
+            $_SESSION['email'] = $request['email'];
+            $_SESSION['user-id'] = $request['utilisateur_id'];
+
+            header('Location: /home');
+            exit;
+
+        endif;
+
     }
 
-    private function redirectionType()
-    {
-        if ($_SESSION['user-type'] === 'admin') :
-            return header('Location: /admin');
-        elseif ($_SESSION['user-type'] === 'redacteur-actualite' || $_SESSION['user-type'] === 'redacteur-evenement') :
-            return header('Location: /publication');
-        endif;
-    }
+    // private function redirectionType()
+    // {
+    //     if ($_SESSION['user-type'] === 'admin') :
+    //         return header('Location: /admin');
+    //     elseif ($_SESSION['user-type'] === 'redacteur-actualite' || $_SESSION['user-type'] === 'redacteur-evenement') :
+    //         return header('Location: /publication');
+    //     endif;
+    // }
 
     //Enregistrer utilisateur manuellement
     // public function test(){
@@ -79,8 +102,76 @@ class login
     //     $user->test();
     // }
 
-    public function logout(){
+    public function logout()
+    {
         session_destroy();
-        return header('Location: /login');
+        header('Location: /login');
+        exit;
+    }
+
+    public function passwordForgotten(){
+
+        $messages = $this->get_message();
+
+        $view = 'login-passwordForgotten';
+        $array = compact('messages');
+
+        Render::renderer($view, $array);
+    }
+
+    public function passwordRecover(){
+        if(isset($_POST['email'])):
+            if(!empty($_POST['email'])):
+                $email = $_POST['email'];
+                $array = compact('email');
+                $utilisateur = new Utilisateur();
+                $id = $utilisateur->getId($array);
+                if($id == false):
+                    $this->set_message('Votre email n\'est pas valide', 'error');
+                    header('Location: /login/passwordForgotten');
+                endif;
+                $utilisateur_id = $id['utilisateur_id'];
+                $tokenPassword = $this->create_token();
+
+                $array = compact('tokenPassword', 'utilisateur_id');
+                $utilisateur->updateTokenPassword($array);
+
+                $this->sendConfirmation($utilisateur_id, $tokenPassword, $email);
+
+                $this->set_message('Un email vous à été envoyé.', 'success');
+                header('Location: /login/passwordForgotten');
+                exit;
+            else:
+                $this->set_message('Vous devez rensigner votre email', 'error');
+                header('Location: /login/passwordForgotten');
+                exit;
+            endif;
+            header('Location: /login/passwordForgotten');
+            exit;
+        endif;
+
+    }
+
+    private function sendConfirmation($id, $token, $email){
+        $host = 'cozic.alwaysdata.net';
+
+        $userId = $id;
+        
+        $url = "https://$host/verify/passwordRecover/" . $token . "user=" . $userId;
+        
+        $to = $email;
+        $objet = 'Reinitialiser votre mot de passe';
+        $message = "<a href='$url' target='_Blank'>Réinitialiser votre mot de passe</a>";
+        $headers = 'Content-type: text/html; charset=UTF-8';
+        $headers .= 'From: projet-stage@cozic.alwaysdata.net';
+        
+        mail($to, $objet, $message, $headers);
+    }
+
+    private function create_token(){
+
+        $token = bin2hex(openssl_random_pseudo_bytes(16));
+
+        return $token;
     }
 }

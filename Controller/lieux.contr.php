@@ -1,11 +1,12 @@
 <?php
 
+namespace App\Controller;
 
-use Model\Lieux as l;
-use Model\Organisation;
-use Model\utils\Render;
+use App\Model\Lieux as l;
+use App\Model\Organisation;
+use App\Model\utils\Render;
 
-class Lieux
+class Lieux extends Controller
 {
     private $nom;
     private $ville;
@@ -19,26 +20,21 @@ class Lieux
                 $type = 'evenement';
         else :
             return header('Location: /login');
+            exit;
         endif;
 
-        //Default
-        $message_update = [];
-        $message_set = [];
-        //condition
-        if (isset($_SESSION['message_set'])) :
-            $message_set = $_SESSION['message_set'];
-            $_SESSION['message_set'] = '';
-        elseif (isset($_SESSION['message_update'])) :
-            $message_update = $_SESSION['message_update'];
-            $_SESSION['message_update'] = '';
-        endif;
+        // Recuperation des messages
+        $messages = $this->get_message();
 
+        // Recuperation du logo
         $organisation = new Organisation;
         $logo = $organisation->getLogo();
 
+        // Recuperation des lieux
         $location = new l();
         $locations = $location->getLieux();
-        $array = compact('locations', 'message_update', 'message_set','type','logo');
+
+        $array = compact('locations', 'messages','type','logo');
         $view = 'lieux';
 
         Render::renderer($view, $array);
@@ -46,6 +42,9 @@ class Lieux
 
     public function modify($id)
     {
+        // Code servant à trier les messages lors de l'affichage
+        $code = 'modify';
+
         if (isset($_POST['nom']) && isset($_POST['ville']) && isset($_POST['code_postale']) && isset($_POST['gps_lat']) && isset($_POST['gps_long'])) :
             $this->nom = $_POST['nom'];
             $this->ville = $_POST['ville'];
@@ -56,15 +55,15 @@ class Lieux
             //Update
 
             if (isset($_POST['modify']) && isset($id) && !empty($id)) :
-                $check = $this->checkLieux();
-                if ($check[0]) :
-
-                    
+                $check = $this->checkLieux($code);
+                if ($check) :
+                   
                     $array = ['nom' => $this->nom, 'ville' => $this->ville, 'code_postale' => $this->code_postale, 'gps_lat' => $this->gps_lat, 'gps_long' => $this->gps_long, 'lieux_id' => $id];
                     $location = new l();
                     $location->updateLieux($array);
-                else :
-                    $_SESSION['message_update'] = $check[1];
+
+                    $this->set_message("le lieux $this->nom à bien été mis à jour",'success');
+
                 endif;
             //Delete    
             elseif (isset($_POST['delete']) && isset($id) && !empty($id)) :
@@ -73,14 +72,20 @@ class Lieux
                 $location = new l();
                 $location->deleteLieux($array);
 
+                $this->set_message("le lieux $this->nom à bien été supprimé",'success');
+
             endif;
         endif;
 
         header('Location: /lieux');
+        exit;
     }
 
     public function set()
     {
+        // Code servant à trier les messages lors de l'affichage
+        $code = 'set';
+
         if (isset($_POST['set'])) :
             if (isset($_POST['nom']) && isset($_POST['ville']) && isset($_POST['code_postale']) && isset($_POST['gps_lat']) && isset($_POST['gps_long'])) :
 
@@ -90,20 +95,21 @@ class Lieux
                 $this->gps_lat = $_POST['gps_lat'];
                 $this->gps_long = $_POST['gps_long'];
 
-                $check = $this->checkLieux();
-                if ($check[0]) :
+                $check = $this->checkLieux($code);
+                if ($check) :
                     $array = ['nom' => $this->nom, 'ville' => $this->ville, 'code_postale' => $this->code_postale, 'gps_lat' => $this->gps_lat, 'gps_long' => $this->gps_long];
                     $location = new l();
                     $location->setLieux($array);
-                else :
-                    $_SESSION['message_set'] = $check[1];
+
+                    $this->set_message("le lieux $this->nom à bien été ajouté", 'success');
                 endif;
             endif;
         endif;
         header('Location: /lieux');
+        exit;
     }
 
-    private function checkLieux()
+    private function checkLieux($code)
     {
         $nom = $this->nom;
         $ville = $this->ville;
@@ -113,30 +119,35 @@ class Lieux
 
         //Default
         $result = true;
-        $message = [];
+
         //Condition
         if (empty($nom) || empty($ville) || empty($code_postale) || empty($gps_lat) || empty($gps_long)) :
             $result = false;
-            $message[] = 'Les champs ne peuvent pas être vide.';
+            $message = 'Les champs ne peuvent pas être vide.';
+            $this->set_message($message, 'error', $code);
         endif;
         if (strlen($nom) >= 40) :
             $result = false;
-            $message[] = 'Le nom ne peut contenir que 40 caractères maximum.';
+            $message = 'Le nom ne peut contenir que 40 caractères maximum.';
+            $this->set_message($message, 'error', $code);
         endif;
         if (strlen($ville) >= 40) :
             $result = false;
-            $message[] = 'La ville ne peut contenir que 40 caractères maximum.';
+            $message = 'La ville ne peut contenir que 40 caractères maximum.';
+            $this->set_message($message, 'error', $code);
         endif;
         if (strlen($code_postale) !== 5) :
             $result = false;
-            $message[] = 'Le code postale doit contenir 5 chiffres.';
+            $message = 'Le code postale doit contenir 5 chiffres.';
+            $this->set_message($message, 'error', $code);
         endif;
         if (strlen($gps_lat) >= 20 || strlen($gps_lat) >= 20) :
             $result = false;
-            $message[] = 'Les coordonnées gps ne sont pas valide.';
+            $message = 'Les coordonnées gps ne sont pas valide.';
+            $this->set_message($message, 'error', $code);
         endif;
 
-        $array = [$result, $message];
-        return $array;
+
+        return $result;
     }
 }

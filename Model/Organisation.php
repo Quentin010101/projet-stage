@@ -1,8 +1,8 @@
 <?php
 
-namespace Model;
+namespace App\Model;
 
-use Model\utils\Database;
+use App\Model\utils\Database;
 
 class Organisation
 {
@@ -29,6 +29,14 @@ class Organisation
 
     public function getLogo(){
         $query = 'SELECT logo FROM organisation WHERE organisation_id = 1';
+
+        $db = new Database();
+        $request = $db->findOne($query, []);
+        return $request;
+    }
+
+    public function getName(){
+        $query = 'SELECT nom FROM organisation WHERE organisation_id = 1';
 
         $db = new Database();
         $request = $db->findOne($query, []);

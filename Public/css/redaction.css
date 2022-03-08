@@ -82,26 +82,7 @@ label{
 span{
     color: var(--c-p-1);
 }
-.container-file{
-    position: relative;
-    width: fit-content;
-    margin-bottom: 10px;
-}
-#file{
-    position:absolute;
-    font-size: 0.1em;
-    right: 0;
-    left: 0;
-    z-index: -1;
-    opacity: 0;
-}
-#file-label{
- border: 2px solid var(--c-p-1);
- padding: 10px;
- cursor: pointer;
- width: 170px;
- text-align: center;
-}
+
 
 @media (max-width: 800px){
     #title{

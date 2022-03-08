@@ -1,4 +1,4 @@
-<?php $pageTitle = 'Accueil' ?>
+<?php $pageTitle = htmlspecialchars($organisationName['nom']) ?>
 <?php $pageCss = 'accueil.css' ?>
 
 <?php require_once('include/_header.html.php'); ?>

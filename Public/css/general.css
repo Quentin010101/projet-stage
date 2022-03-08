@@ -10,7 +10,12 @@
     --header-height: 65px;
     --footer-height: 85px;
 }
-.error{
+.wrong{
+    color: red;
+    font-style: italic;
+    font-size: 0.9em;
+}
+#wrong{
     color: red;
     font-style: italic;
     font-size: 0.9em;
@@ -27,4 +32,50 @@ a{
 .align-center{
     display: flex;
     align-items: center;
+}
+#message-flash{
+    z-index: 1;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    padding: 15px;
+    color: black;
+}
+.error{
+    opacity: 1;
+    background-color: red;
+}
+.success{
+    opacity: 1;
+    background-color: green;
+}
+.disapear{
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+/* input file */
+.container-file{
+    position: relative;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+#file{
+    position:absolute;
+    font-size: 0.1em;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+#file-label{
+ border: 2px solid var(--c-p-1);
+ padding: 10px;
+ cursor: pointer;
+ width: 170px;
+ text-align: center;
+} 
+.container-file span{
+    color: var(--c-p-1);
 }

@@ -17,20 +17,17 @@
                 <label for="">Mot de passe:</label>
                 <input type="password" name="password" placeholder="Entrer votre Password">
             </div>
-            <?php
-                if(isset($message) && !empty($message)):
-                    ?>
-                        <div class="error">
-                            <p><?php echo htmlspecialchars($message); ?></p>
-                        </div>
-                    <?php
-                endif;
-            ?>
             <div>
                 <input type="submit" value="Valider">
             </div>
         </form>
+        <div class="lien">
+            <a href="/login/passwordForgotten">Vous avez oublié votre mot de passe?</a>
+        </div>
     </div>
 </main>
+
+<?php include('../View/include/_message.html.php'); ?>
+
 
 

@@ -12,13 +12,13 @@
                 <a href="/actualite">Actualités</a>
             </li>
             <li>
-                <a href="/evenement">Evènement</a>
+                <a href="/evenement">Evènements</a>
             </li>
             <li>
-                <a href="#">Activités</a>
+                <a href="/activite">Activités</a>
             </li>
             <li>
-                <a href="#">Organisation (Club)</a>
+                <a href="/organisation">Organisation (Club)</a>
             </li>
             <?php
             if (isset($_SESSION['user-type'])) :
@@ -31,13 +31,19 @@
                 elseif ($_SESSION['user-type'] === 'redacteur-evenement') :
                 ?>
                     <li>
-                        <a href="/publication"><i class="fas fa-pen"></i> Ecriture Evènement</a>
+                        <a href="/publication"><i class="fas fa-pen"></i> Ecriture Evènements</a>
                     </li>
                 <?php
                 elseif ($_SESSION['user-type'] === 'redacteur-actualite') :
                 ?>
                     <li>
                         <a href="/publication"><i class="fas fa-pen"></i> Ecriture Actualités</a>
+                    </li>
+            <?php
+                elseif ($_SESSION['user-type'] === 'user') :
+                ?>
+                    <li>
+                        <a href="/utilisateur">Espace Utilisateur</a>
                     </li>
             <?php
                 endif;
@@ -47,7 +53,17 @@
         </ul>
     </nav>
     <div class="inscription">
-        <a href="#">Inscription</a>
+    <?php if (!isset($_SESSION['user-type'])) :
+        ?>
+        <a href="/login">Login</a>
+        <a href="/inscription">Inscription</a>
+        <?php
+        else:
+            ?>
+        <a href="/login/logout">Deconnexion <i class="fas fa-sign-out-alt"></i></a>
+            <?php
+        endif;
+        ?>
         <div class="burger">
             <i class="fas fa-bars"></i>
         </div>

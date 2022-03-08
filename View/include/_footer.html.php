@@ -2,7 +2,7 @@
     <nav>
         <ul>
             <li>
-                <a href="#">Mention Legal</a>
+                <a href="#">Mentions Legales</a>
             </li>
             <li>
                 <a href="#">Confidentialité</a>

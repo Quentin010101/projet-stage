@@ -50,7 +50,7 @@ section{
 #title span{
     color: var(--c-p-1);
 }
-#organisation form div, #membre-set form div{
+#organisation form div, #membre-set form div, #contact form > div, #update form > div{
     display: flex;
     flex-direction: column;
 }
@@ -94,26 +94,7 @@ label{
     color: var(--c-p-1);
     font-weight: 600;
 }
-.container-file{
-    position: relative;
-    width: fit-content;
-    margin-bottom: 10px;
-}
-#file{
-    position:absolute;
-    font-size: 0.1em;
-    right: 0;
-    left: 0;
-    z-index: -1;
-    opacity: 0;
-}
-#file-label{
-    border: 2px solid var(--c-p-1);
-    padding: 8px;
-    cursor: pointer;
-    width: 170px;
-    text-align: center;
-}
+
 #membre-modify form{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -148,6 +129,24 @@ h3 span{
 .rotate{
     transform: rotateZ(180deg);
     transition: transform 0.5s linear 0.5s;
+}
+#contact hr{
+    margin: 0 auto 10px auto;
+    width: 80%;
+}
+#contact textarea{
+    border-radius: 5px;
+    margin: 5px 0 10px 0;
+    resize: none;
+    padding: 5px 10px;
+}
+.radio{
+    margin-bottom: 15px;
+}
+.radio label{
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 5px;
 }
 
 @media (max-width: 1400px){

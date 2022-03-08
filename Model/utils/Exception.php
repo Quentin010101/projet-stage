@@ -1,8 +1,8 @@
 <?php
 
-namespace Model\utils;
+namespace App\Model\utils;
 
-use Model\utils\Render;
+use App\Model\utils\Render;
 
 
 class Exception

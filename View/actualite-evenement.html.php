@@ -22,11 +22,11 @@
                 <div>
                     <div>
                         <label for="titre">Titre</label>
-                        <input type="text" id="titre" name="titre" placeholder="Entrer un titre">
+                        <input type="text" id="titre" name="titre" placeholder="Entrez un titre">
                     </div>
                     <div>
                         <label for="sous-titre">Sous-titre</label>
-                        <input type="text" id="sous-titre" name="sous-titre" placeholder="Entrer un sous-titre">
+                        <input type="text" id="sous-titre" name="sous-titre" placeholder="Entrez un sous-titre">
                     </div>
                     <div>
                         <label for="date">Date de l'actualité</label>
@@ -34,23 +34,23 @@
                     </div>
                 </div>
                 <div>
-                    <label for="text">Contenue</label>
-                    <textarea name="text" id="text" cols="30" rows="10" placeholder="Entrer votre text"></textarea>
+                    <label for="text">Contenu</label>
+                    <textarea name="text" id="text" cols="30" rows="10" placeholder="Entrez votre text"></textarea>
                 </div>
-                <div class="container-file">
-                    <label for="file" id="file-label">Ajouter une illustration</label>
-                    <input type="file" name="file" id="file">
-                </div>
+                <?php 
+                    $label = 'Ajouter une illustration';
+                    include('../View/include/_input-file.html.php');
+                ?>
                 <?php
                 if($_SESSION['user-type'] == 'redacteur-evenement'):
                 ?>
                 <div>
-                    <label for="lieux">Selectionner un lieux</label>
+                    <label for="lieux">Selectionner un lieu</label>
                     <select name="lieux" id="lieux">
                         <?php
                             if(isset($lieux) && !empty($lieux)):
                                     ?>
-                                        <option value="">--Selectionner un lieux</option>
+                                        <option value="">--Selectionner un lieu</option>
                                     <?php
                                 foreach ($lieux as $key => $l) :
                                     ?>
@@ -59,24 +59,26 @@
                                 endforeach;
                             else:
                                 ?>
-                                    <option value="">Aucun lieux disponible</option>
+                                    <option value="">Aucun lieu disponible</option>
                                 <?php                                        
                             endif;
                         ?>
                     </select>
-                    <a href="/lieux">Vous voulez ajouter un lieux ?</a>
+                    <a href="/lieux">Vous voulez ajouter un lieu ?</a>
                 </div>
                 <?php 
                 endif;
                 ?>
                 <?php
-                if (isset($message) && !empty($message)) :
-                    foreach ($message as $m) :
+                if (isset($messages) && !empty($messages)) :
+                    foreach ($messages as $m) :
+                        if($m['code'] == 'set' ):
                 ?>
-                        <div class="error">
-                            <p><?php echo htmlspecialchars($m); ?></p>
+                        <div id="wrong">
+                            <p><?php echo htmlspecialchars($m['message']); ?></p>
                         </div>
                 <?php
+                        endif;
                     endforeach;
                 endif;
                 ?>
@@ -87,6 +89,8 @@
         </div>
     </section>
 </main>
+
+<?php include('../View/include/_message.html.php'); ?>
 
 <?php 
     include('../View/include/_footer.html.php');

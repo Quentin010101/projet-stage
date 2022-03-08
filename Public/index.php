@@ -1,45 +1,51 @@
 <?php
+
+namespace App\Public;
+
 session_start();
+?>
 
-use Model\utils\Rooter;
-use Model\utils\Exception;
+<?php
 
-// spl_autoload_register(function ($className) {
-//     $className = str_replace('\\', '/', $className);
-//     if ($className == 'Rooter') :
-//         $className = '../Model/utils/Rooter.php';
-//     else :
-//         if (preg_match('/Controller/', $className)) :
-//             $className = '../' . $className . '.contr.php';
-//         elseif (preg_match('/Model/', $className)) :
-//             $className = '../' . $className . '.php';
-//         else :
-//             $className = '../Controller/' . $className . '.contr.php';
-//         endif;
-//     endif;
-//     require_once($className);
-// });
 
-require_once('../Model/utils/Rooter.php');
-require_once('../Model/utils/Database.php');
-require_once('../Model/utils/Render.php');
-require_once('../Model/utils/Exception.php');
-require_once('../Model/Publication.php');
-require_once('../Model/Organisation.php');
-require_once('../Model/Lieux.php');
-require_once('../Model/Membre.php');
-require_once('../Model/Utilisateur.php');
-require_once('../Controller/home.contr.php');
-require_once('../Controller/actualite.contr.php');
-require_once('../Controller/evenement.contr.php');
-require_once('../Controller/login.contr.php');
-require_once('../Controller/lieux.contr.php');
-require_once('../Controller/publication.contr.php');
-require_once('../Controller/admin.contr.php');
+use App\Model\utils\Rooter;
+use App\Model\utils\Exception;
 
 
 try {
-    Rooter::Redirect();
+
+    spl_autoload_register(function ($class) {
+
+        $className = str_replace('\\', '/', $class);
+        if (str_contains($className, 'Controller')) :
+            $array = explode('/', $className);
+            $array[2] = lcfirst($array[2]);
+            $className = implode('/', $array);
+
+            if (str_contains($className, 'App')) :
+                $className = str_replace('App', '..', $className);
+                $className = $className . '.contr.php';
+            else :
+                $className = '../' . $className . '.contr.php';
+            endif;
+        elseif (str_contains($className, 'Model')) :
+            $className = str_replace('App', '..', $className);
+
+            $className = $className . '.php';
+        else :
+            throw new \Exception('Un problème est survenu.');
+        endif;
+        if (!file_exists($className)) :
+            throw new \Exception('URL non valide.');
+        endif;
+
+        require_once($className);
+    });
+
+
+    $rooter = new Rooter();
+    $rooter->redirect();
 } catch (\Exception $e) {
+
     Exception::handle_Exception($e);
 }

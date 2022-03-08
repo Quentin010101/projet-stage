@@ -7,7 +7,7 @@ include('../View/include/_header.html.php');
 
 <main>
     <section>
-        <h2>Liste des évènement:</h2>
+        <h2>Liste des évènements:</h2>
         <?php 
             if(isset($evenement) && !empty($evenement)):
                 foreach ($evenement as $e) :       
@@ -26,7 +26,7 @@ include('../View/include/_header.html.php');
                     <p><?php echo htmlspecialchars($e['text'])?></p>
                 </div>
                 <div class='publication'>
-                    <h5>Article publié le: <span><?php echo htmlspecialchars($e['date_publication'])?></span></h5>
+                <h5>Article publié le: <span><?php $date = new DateTime(htmlspecialchars($e['date_publication'])); echo $date->format('d-m-Y'); ?></span> à <span><?php echo $date->format('H:i');?></span></h5>
                 </div>
             </article>
         </div>

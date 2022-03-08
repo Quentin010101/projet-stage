@@ -1,9 +1,13 @@
 <?php $pageTitle = 'Exception'; ?>
 
-
-<div class="error">
-    <p><?php echo $message; ?></p>
-</div>
+<main>
+    <div id="wrong">
+        <p><?php echo htmlspecialchars($message); ?></p>
+    </div>
+    <div>
+        <a href="/home">Retour à l'accueil</a>
+    </div>
+</main>
 
 
 
