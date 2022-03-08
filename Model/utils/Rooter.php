@@ -45,7 +45,7 @@ class Rooter
 
                 $this->classExist($className);
 
-                if(str_contains($url[2], 'user=') && $url[0] === 'verify' && $url[1] === 'verifyaccount'):
+                if(str_contains($url[2], 'user=') && $url[0] === 'verify' && ($url[1] === 'verifyaccount' || $url[1] === 'passwordRecover')):
                     $array = explode('user=', $url[2]);
                     $token = $array[0];
                     $utilisateur_id = $array[1];

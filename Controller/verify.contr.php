@@ -47,9 +47,9 @@ class Verify extends Controller
 
             $array = compact('utilisateur_id');
             $utilisateur = new Utilisateur();
-            $token_confirmation = $utilisateur->confirmUser($array);
+            $token_confirmation = $utilisateur->confirmUserRecoverPassword($array);
 
-            if ($tokenPassword === $token_confirmation['token']) :
+            if ($tokenPassword === $token_confirmation['tokenPassword']) :
 
                 $array = compact('tokenPassword', 'utilisateur_id');
                 $view = 'login-passwordRecover';
@@ -58,7 +58,7 @@ class Verify extends Controller
                 exit;
 
             else :
-                throw new Exception('Une erreur est survenu.');
+                throw new Exception('Une erreur est survenu 1.');
             endif;
 
         else :
@@ -79,9 +79,9 @@ class Verify extends Controller
                 if ($password === $passwordConfirmation) :
                     $array = compact('utilisateur_id');
                     $utilisateur = new Utilisateur();
-                    $token_confirmation = $utilisateur->confirmUser($array);
+                    $token_confirmation = $utilisateur->confirmUserRecoverPassword($array);
 
-                    if ($token === $token_confirmation['token']) :
+                    if ($token === $token_confirmation['tokenPassword']) :
                         $array = compact('password', 'utilisateur_id');
                         $utilisateur->updatePassword($array);
                         $this->set_message('Votre mot de passe à bien été mis à jour', 'success');

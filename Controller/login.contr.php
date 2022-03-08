@@ -160,7 +160,7 @@ class Login extends Controller
         
         $to = $email;
         $objet = 'Reinitialiser votre mot de passe';
-        $message = "<a href='$url' target='_Blank'>Réinitialiser votre mot de passe</a>";
+        $message = "Pour réinitialiser votre mot de passe cliquer le lien suivant: <a href='$url' target='_Blank'>Réinitialiser votre mot de passe</a>";
         $headers = 'Content-type: text/html; charset=UTF-8';
         $headers .= 'From: projet-stage@cozic.alwaysdata.net';
         

@@ -51,6 +51,15 @@ class Utilisateur
         return $request;
     }
 
+    public function confirmUserRecoverPassword($array){
+        $query = 'SELECT tokenPassword FROM utilisateur WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->findOne($query, $array);
+
+        return $request;
+    }
+
     public function activateAccount($array){
         $query = 'UPDATE utilisateur SET actif = 1 WHERE utilisateur_id = :utilisateur_id';
 
