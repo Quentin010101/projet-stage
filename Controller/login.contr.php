@@ -138,7 +138,6 @@ class Login extends Controller
 
                 $this->sendConfirmation($utilisateur_id, $tokenPassword, $email);
 
-                $this->set_message('Un email vous à été envoyé.', 'success');
                 header('Location: /login/passwordForgotten');
                 exit;
             else:
@@ -165,7 +164,9 @@ class Login extends Controller
         $headers = 'Content-type: text/html; charset=UTF-8';
         $headers .= 'From: projet-stage@cozic.alwaysdata.net';
         
-        mail($to, $objet, $message, $headers);
+        if(mail($to, $objet, $message, $headers)):
+            $this->set_message('Un email vous à été envoyé.', 'success');
+        endif;
     }
 
     private function create_token(){
