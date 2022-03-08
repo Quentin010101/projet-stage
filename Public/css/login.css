@@ -67,7 +67,7 @@ label{
 .lien a{
     color: var(--c-p-1);
 }
-p{
+.message-recover{
     color: rgba(0,0,0,0.8);
     font-size: 0.9em;
     margin-bottom: 10px;

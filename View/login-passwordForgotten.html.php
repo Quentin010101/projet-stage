@@ -10,7 +10,7 @@
         
         <form action="/login/passwordRecover" method="post">
             <div>
-                <p>Un lien vous sera envoyé à cette adresse pour réinitialiser votre email</p>
+                <p class="message-recover">Un lien vous sera envoyé à cette adresse pour réinitialiser votre email</p>
             </div>
             <div>
                 <label for="">Email</label>
