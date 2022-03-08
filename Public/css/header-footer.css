@@ -84,6 +84,13 @@ footer i{
     font-size: 1.5em;
     cursor: pointer;
 }
+header .inscription .lien-role{
+    border: solid 1px var(--c-p-1);
+    padding: 8px;
+    border-radius: 5px;
+    background-color: white;
+    color: var(--c-p-1);
+}
 
 @media (max-width: 950px){
     header nav{

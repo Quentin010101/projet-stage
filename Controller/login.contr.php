@@ -56,7 +56,7 @@ class Login extends Controller
         if (password_verify($password, $hash)) :
             return;
         else :
-            $this->set_message('Vos identifiants ne sont pas valide.', 'error');
+            $this->set_message('Vos identifiants ne sont pas valides.', 'error');
             header('Location: /login');
             exit;
         endif;

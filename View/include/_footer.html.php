@@ -8,10 +8,7 @@
                 <a href="#">Confidentialité</a>
             </li>
             <li>
-                <a href="#">Page de contact</a>
-            </li>
-            <li>
-                <a href="/login">Login</a>
+                <a href="/contact">Page de contact</a>
             </li>
         </ul>
     </nav>

@@ -47,10 +47,10 @@ class Utilisateur extends Controller
                 $prenom = $_POST['prenom-update'];
                 $email = $_POST['email-update'];
                 $this->checkUser($nom,$prenom,$email);
-                $this->set_message('Vos information ont bien été mise à jour.', 'success');
+                $this->set_message('Vos informations ont bien été mise à jour.', 'success');
 
             else :
-                $this->set_message('Vous devez remplir tous les champs: nom, prénom, email.', 'error');
+                $this->set_message('Vous devez remplir tous les champs.', 'error');
                 header('Location: /utilisateur');
                 exit;
             endif;

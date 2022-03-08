@@ -64,7 +64,7 @@ class Publication extends Controller
                         $hebergeur->setHebergeur($array);
                     endif;
 
-                    $this->set_message('Votre publication à bien été poster', 'success');
+                    $this->set_message('Votre publication à bien été posté', 'success');
                     return header('Location: /publication');
                     exit;
                 else :

@@ -58,7 +58,7 @@ class Verify extends Controller
                 exit;
 
             else :
-                throw new Exception('Une erreur est survenu 1.');
+                throw new Exception('Une erreur est survenu.');
             endif;
 
         else :

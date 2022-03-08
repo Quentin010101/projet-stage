@@ -72,3 +72,57 @@ label{
     font-size: 0.9em;
     margin-bottom: 10px;
 }
+#contact{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+#contact hr{
+    margin: 0 auto 10px auto;
+    width: 80%;
+}
+#contact textarea{
+    border-radius: 5px;
+    margin: 5px 0 10px 0;
+    resize: none;
+    padding: 5px 10px;
+}
+.radio{
+    margin-bottom: 15px;
+}
+.radio label{
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 5px;
+}
+.radio > div{
+    display: flex;
+    flex-direction: row;
+}
+.obligation, .span-password, .confirmation{
+    color: rgba(0,0,0,0.5);
+    font-size: 0.8em;
+}
+.obligation-single{
+    margin-left: 20px;
+}
+.span-validate{
+    color: rgb(47, 160, 47);
+}
+.span-validate .tiret{
+    display: none;
+}
+form .fas{
+    display: none;
+}
+.span-validate .fas{
+    display:inline;
+}
+.span-invalidate{
+    color: rgb(197, 78, 78);
+}
+.confirmation{
+    color: rgb(197, 78, 78);
+    display: none;
+}

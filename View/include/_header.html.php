@@ -1,12 +1,13 @@
-<?php $pageScript[] ="burger.js" ?>
+<?php $pageScript[] = "burger.js" ?>
 
 <header class="flex">
     <div class="logo">
         <a href="/home">
-            <img src="<?php if(isset($logo) && !empty($logo)): echo 'logo/' . htmlspecialchars($logo['logo']); endif;?>" alt="logo">
+            <img src="<?php if (isset($logo) && !empty($logo)) : echo 'logo/' . htmlspecialchars($logo['logo']);
+                        endif; ?>" alt="logo">
         </a>
     </div>
-    <nav >
+    <nav>
         <ul class="flex">
             <li>
                 <a href="/actualite">Actualités</a>
@@ -20,48 +21,40 @@
             <li>
                 <a href="/organisation">Organisation (Club)</a>
             </li>
+        </ul>
+    </nav>
+    <div class="inscription">
+        <?php if (!isset($_SESSION['user-type'])) :
+        ?>
+            <a href="/login">Login</a>
+            <a href="/inscription">Inscription</a>
+        <?php
+        else :
+        ?>
             <?php
             if (isset($_SESSION['user-type'])) :
                 if ($_SESSION['user-type'] === 'admin') :
             ?>
-                    <li>
-                        <a href="/admin">Espace Administrateur</a>
-                    </li>
+                        <a class="lien-role" href="/admin">Espace Administrateur</a>
                 <?php
                 elseif ($_SESSION['user-type'] === 'redacteur-evenement') :
                 ?>
-                    <li>
-                        <a href="/publication"><i class="fas fa-pen"></i> Ecriture Evènements</a>
-                    </li>
+                        <a class="lien-role" href="/publication"><i class="fas fa-pen"></i> Ecriture Evènements</a>
                 <?php
                 elseif ($_SESSION['user-type'] === 'redacteur-actualite') :
                 ?>
-                    <li>
-                        <a href="/publication"><i class="fas fa-pen"></i> Ecriture Actualités</a>
-                    </li>
-            <?php
+                        <a class="lien-role" href="/publication"><i class="fas fa-pen"></i> Ecriture Actualités</a>
+                <?php
                 elseif ($_SESSION['user-type'] === 'user') :
                 ?>
-                    <li>
-                        <a href="/utilisateur">Espace Utilisateur</a>
-                    </li>
+                        <a class="lien-role" href="/utilisateur"><i class="fas fa-user"></i> Espace Utilisateur</a>
             <?php
                 endif;
             endif;
 
             ?>
-        </ul>
-    </nav>
-    <div class="inscription">
-    <?php if (!isset($_SESSION['user-type'])) :
-        ?>
-        <a href="/login">Login</a>
-        <a href="/inscription">Inscription</a>
+            <a href="/login/logout">Deconnexion <i class="fas fa-sign-out-alt"></i></a>
         <?php
-        else:
-            ?>
-        <a href="/login/logout">Deconnexion <i class="fas fa-sign-out-alt"></i></a>
-            <?php
         endif;
         ?>
         <div class="burger">

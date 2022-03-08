@@ -41,57 +41,6 @@ include('../View/include/_header.html.php');
         </div>
         </div>
     </section>
-    <section id="contact" class="flex">
-        <div class="wrapper">
-            <h3>Formulaire de contact: <span><i class="fas fa-angle-down"></i></span></h3>
-            <div class="menu">
-                <form action="" method="post">
-                    <div>
-                        <label for="nom">Nom</label>
-                        <input id="nom" type="text" placeholder="Entrez votre nom" value="<?php echo htmlspecialchars($utilisateur['nom']) ?>">
-                    </div>
-                    <div>
-                        <label for="prenom">Prénom</label>
-                        <input id="prenom" type="text" placeholder="Entrez votre prénom" value="<?php echo htmlspecialchars($utilisateur['prenom']) ?>">
-                    </div>
-                    <div>
-                        <label for="email">Email</label>
-                        <input id="email" type="email" placeholder="Entrez votre email" value="<?php echo htmlspecialchars($utilisateur['email']) ?>">
-                    </div>
-                    <div>
-                        <label for="tel">Tel</label>
-                        <input id="tel" type="text" placeholder="Entrez votre numéro de téléphone">
-                    </div>
-                    <div>
-                        <label for="objet">Objet de la demande</label>
-                        <input id="objet" type="text" placeholder="Entrez l'objet de votre demande">
-                    </div>
-                    <hr>
-                    <div class="radio">
-                        <p>Type de demande:</p>
-                        <div>
-                            <input type="radio" name="demande" id="renseignement" value="renseignement">
-                            <label for="renseignement">Renseignement</label>
-                            <input type="radio" name="demande" id="partenariat" value="partenariat">
-                            <label for="partenariat">Partenariat</label>
-                            <input type="radio" name="demande" id="inscription" value="inscription">
-                            <label for="inscription">S'inscrire</label>
-                            <input type="radio" name="demande" id="autre" value="autre">
-                            <label for="autre">Autre</label>
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <label for="text">Message</label>
-                        <textarea name="message" id="message" cols="30" rows="10" placeholder="Entrer votre message"></textarea>
-                    </div>
-                    <div>
-                        <input type="submit" class="validate">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
 </main>
 
 <?php include('../View/include/_message.html.php'); ?>

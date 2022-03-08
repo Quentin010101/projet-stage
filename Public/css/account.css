@@ -50,7 +50,7 @@ section{
 #title span{
     color: var(--c-p-1);
 }
-#organisation form div, #membre-set form div, #contact form > div, #update form > div{
+#organisation form div, #membre-set form div, #update form > div{
     display: flex;
     flex-direction: column;
 }
@@ -130,24 +130,7 @@ h3 span{
     transform: rotateZ(180deg);
     transition: transform 0.5s linear 0.5s;
 }
-#contact hr{
-    margin: 0 auto 10px auto;
-    width: 80%;
-}
-#contact textarea{
-    border-radius: 5px;
-    margin: 5px 0 10px 0;
-    resize: none;
-    padding: 5px 10px;
-}
-.radio{
-    margin-bottom: 15px;
-}
-.radio label{
-    margin-right: 10px;
-    cursor: pointer;
-    padding: 5px;
-}
+
 
 @media (max-width: 1400px){
     #membre-modify form{

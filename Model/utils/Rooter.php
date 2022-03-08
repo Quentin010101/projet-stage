@@ -19,11 +19,10 @@ class Rooter
             $url = explode('/', $url);
 
             if (count($url) == 1) :
-
                 $className = 'App\Controller\\' . $url[0];
                 $methodName = 'index';
-
-                $this->classExist($className);
+                
+                $this->classExist($className);   
 
                 $instance = new $className();
                 $instance->$methodName();
