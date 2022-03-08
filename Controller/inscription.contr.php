@@ -146,10 +146,10 @@ class Inscription extends Controller
 
         $messages = $this->get_message();
 
-        $view = 'inscription-confirmation';
-        $array = [];
-
-        $array = compact('messages');
+        $view = 'confirmation';
+        $variable = 'account';
+        
+        $array = compact('messages', 'variable');
 
         Render::Renderer($view, $array);
     }

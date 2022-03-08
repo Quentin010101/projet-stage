@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\Utilisateur;
 use App\Model\utils\Render;
-
+use Exception;
 
 class Login extends Controller
 {
@@ -138,7 +138,7 @@ class Login extends Controller
 
                 $this->sendConfirmation($utilisateur_id, $tokenPassword, $email);
 
-                header('Location: /login/passwordForgotten');
+                header('Location: /login/confirmation');
                 exit;
             else:
                 $this->set_message('Vous devez rensigner votre email', 'error');
@@ -165,7 +165,9 @@ class Login extends Controller
         $headers .= 'From: projet-stage@cozic.alwaysdata.net';
         
         if(mail($to, $objet, $message, $headers)):
-            $this->set_message('Un email vous à été envoyé.', 'success');
+            $this->set_message($email, 'success', 'confirmation');
+        else:
+            throw new Exception('une erreur est survenue');
         endif;
     }
 
@@ -174,5 +176,17 @@ class Login extends Controller
         $token = bin2hex(openssl_random_pseudo_bytes(16));
 
         return $token;
+    }
+
+    public function confirmation(){
+
+        $messages = $this->get_message();
+
+        $variable = 'password';
+        $view = 'confirmation';
+
+        $array = compact('messages','variable');
+
+        Render::Renderer($view, $array);
     }
 }
