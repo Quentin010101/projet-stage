@@ -2,7 +2,10 @@
     <nav>
         <ul>
             <li>
-                <a href="#">Mentions Legales</a>
+                <a href="/condition/mention_legale" target="_Blank">Mentions Legales</a>
+            </li>
+            <li>
+                <a href="/condition/condition_generale" target="_Blank">Conditions Générales</a>
             </li>
             <li>
                 <a href="#">Confidentialité</a>

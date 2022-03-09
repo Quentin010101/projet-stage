@@ -1,0 +1,37 @@
+main{
+    margin: 40px 15%;
+}
+section{
+    margin: 40px 0;
+}
+h1{
+    color: rgba(0,0,0,0.7);
+    margin-bottom: 50px;
+    text-align: center;
+}
+h2{
+    color: var(--c-p-1);
+}
+p{
+    color: rgba(0,0,0,0.7);
+}
+p span{
+    color: rgb(51, 51, 51);
+    font-weight: 600;
+}
+section hr{
+    width: 30%;
+    margin: 10px auto;
+    color: var(--c-s-1);
+}
+#condition-generale hr{
+    width: 30%;
+    margin: 30px auto;
+    color: var(--c-s-1);
+}
+
+@media (max-width: 800px){
+    main{
+        margin: 40px 5%;
+    }
+}
