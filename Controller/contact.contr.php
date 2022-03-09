@@ -33,7 +33,7 @@ class Contact extends Controller
                 $organisation = new Organisation();
                 $emailOrganisation = $organisation->getEmail();
                 
-                $this->contactMail($nom,$prenom,$email,$tel,$objet,$demande, $message, $emailOrganisation);
+                $this->contactMail($nom,$prenom,$email,$tel,$objet,$demande, $message, $emailOrganisation['email']);
                 header('Location: /contact');
                 exit;
             else:
@@ -48,23 +48,31 @@ class Contact extends Controller
 
     private function contactMail($nom,$prenom,$email,$tel,$objet,$demande, $messageClient, $emailOrganisation){
 
+        $nom = strtoupper($nom);
+        $prenom = ucfirst($prenom);
+        $demande = ucfirst($demande);
+
+
         //Email de contact
         $to = $emailOrganisation;
         $subject = $objet;
-        $message = "$nom $prenom <br>
-                    Email: $email <br>
-                    Tel: $tel <br>
-                    Type de demande $demande <br>
-                    $messageClient";
+        $message = "Mr, Mme: <strong>$nom $prenom</strong> <br>
+                    Email: <strong>$email</strong> <br>
+                    Tel: <strong>$tel</strong> <br>
+                    Type de demande: <strong>$demande</strong> <br>
+                    Message: <br>
+                    <hr>
+                    <br>
+                    $messageClient
+                    <br>
+                    <br>
+                    <hr>";
         $message = wordwrap($message, 70, "\r\n");
         
-        $headers = array(
-            'From' => 'projet-stage@cozic.alwaysdata.net',
-            'Content-type: text/html; charset=iso-8859-1',
-            'MIME-Version: 1.0',
-            'X-Mailer' => 'PHP/' . phpversion()
-        );
 
+        $headers = 'Content-type: text/html; charset=iso-8859-1';
+        $headers .= 'From: projet-stage@cozic.alwaysdata.net';
+        
         if(mail($to, $subject, $message, $headers)):
             $this->set_message('Votre demande à bien été envoyé', 'success');
         else:
