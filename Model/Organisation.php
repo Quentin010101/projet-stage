@@ -42,4 +42,11 @@ class Organisation
         $request = $db->findOne($query, []);
         return $request;
     }
+    public function getEmail(){
+        $query = 'SELECT email FROM organisation WHERE organisation_id = 1';
+
+        $db = new Database();
+        $request = $db->findOne($query, []);
+        return $request;
+    }
 }

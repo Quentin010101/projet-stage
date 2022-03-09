@@ -9,26 +9,26 @@
         <div class="wrapper">
             <h1>Formulaire de contact:</h1>
             <div class="menu">
-                <form action="" method="post">
+                <form action="/contact/contactPost" method="post">
                     <div>
                         <label for="nom">Nom</label>
-                        <input id="nom" type="text" placeholder="Entrez votre nom" >
+                        <input id="nom" type="text" name="nom" placeholder="Entrez votre nom" >
                     </div>
                     <div>
                         <label for="prenom">Prénom</label>
-                        <input id="prenom" type="text" placeholder="Entrez votre prénom" >
+                        <input id="prenom" type="text" name="prenom" placeholder="Entrez votre prénom" >
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input id="email" type="email" placeholder="Entrez votre email">
+                        <input id="email" type="email" name="email" placeholder="Entrez votre email">
                     </div>
                     <div>
                         <label for="tel">Tel</label>
-                        <input id="tel" type="text" placeholder="Entrez votre numéro de téléphone">
+                        <input id="tel" type="text" name="tel" placeholder="Entrez votre numéro de téléphone">
                     </div>
                     <div>
                         <label for="objet">Objet de la demande</label>
-                        <input id="objet" type="text" placeholder="Entrez l'objet de votre demande">
+                        <input id="objet" type="text" name="objet" placeholder="Entrez l'objet de votre demande">
                     </div>
                     <hr>
                     <div class="radio">
@@ -55,3 +55,5 @@
         </div>
     </section>
 </main>
+
+<?php include('../View/include/_message.html.php'); ?>
