@@ -56,8 +56,8 @@
         }
 
         map.fitBounds([
-            [longMax + 1, latMax + 1], // northeastern corner of the bounds
-            [longMin - 1, latMin - 1], // southwestern corner of the bounds
+            [longMax + 0.2, latMax + 0.2], // northeastern corner of the bounds
+            [longMin - 0.2, latMin - 0.2], // southwestern corner of the bounds
         ]);
 
     }
