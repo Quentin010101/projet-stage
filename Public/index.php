@@ -20,11 +20,18 @@ try {
         if (str_contains($className, 'Controller')) :
             $array = explode('/', $className);
             $array[2] = lcfirst($array[2]);
+            if(count($array) == 4):
+                $array[3] = lcfirst($array[3]);
+            endif;
             $className = implode('/', $array);
 
             if (str_contains($className, 'App')) :
                 $className = str_replace('App', '..', $className);
-                $className = $className . '.contr.php';
+                if (!str_contains($className, 'modelController')) :
+                    $className = $className . '.contr.php';
+                else :
+                    $className = $className . '.php';
+                endif;
             else :
                 $className = '../' . $className . '.contr.php';
             endif;

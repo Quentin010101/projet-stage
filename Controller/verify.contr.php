@@ -5,8 +5,9 @@ namespace App\Controller;
 use Exception;
 use App\Model\Utilisateur;
 use App\Model\utils\Render;
+use App\Controller\utils\ModelController;
 
-class Verify extends Controller
+class Verify extends ModelController
 {
     public function verifyaccount($array)
     {

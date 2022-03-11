@@ -1,5 +1,6 @@
 body{
     min-height: 100vh;
+    position: relative;
 }
 main{
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
@@ -24,7 +25,7 @@ form div{
     display: flex;
     flex-direction: column;
 }
-form input[type='text'], form input[type='date'], form input[type='file'], form select{
+form input[type='text'], form input[type='date'], form input[type='file'], form select, form input[type='number']{
     height: 30px;
     border-radius: 5px;
     margin: 5px 0 20px 0px;
@@ -37,7 +38,7 @@ form textarea{
     padding: 5px 5px;
     height: 100px;
 }
-form input[type='submit']{
+form input[type='submit'], .validate{
     width:  100px;
     height: 30px;
     border: 2px green solid;
@@ -47,14 +48,31 @@ form input[type='submit']{
     border-radius: 5px;
     align-self: center;
 }
-form input[type='submit']:hover{
+form input[type='submit']:hover, .validate:hover{
     border: 2px green solid;
     color: green;
     background-color: white;
 }
-form a{
+section .fa-close{
+    padding: 10px;
+    align-self: end;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+.container-button{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#button-set, #button-modify{
     color: var(--c-p-1);
+    background-color: transparent;
+    border: none;
     text-decoration: underline;
+    max-width: fit-content;
+    cursor: pointer;
+    padding: 2px 0;
+    margin: 2px 0;
 }
 label{
     color: var(--c-p-1);
@@ -82,11 +100,109 @@ label{
 span{
     color: var(--c-p-1);
 }
+#lieux-set, #lieux-modify{
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+.overlay{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    padding: 10px 30px 30px 30px;
+}
+#lieux-modify .overlay{
+    width: 80vw;
+    height: 90vh;
+    overflow-y: scroll;
+}
+.overlay h1{
+    margin-bottom: 10px;
+}
+.hidden{
+    display: none;
+}
+form span{
+    color: grey;
+    font-size: 0.8em;
+}
+.span-invalidate{
+    color: rgb(204, 45, 45);
+}
+.container-modify{
+    margin: 10px 0;
+}
+.button-validate-delete, .button-validate-modify, .button-validate-cancel{
+    width: fit-content;
+    padding: 2px 5px;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button-validate-cancel{
+    border: rgb(54, 54, 54) solid 1px;
+    color:rgb(54, 54, 54);
+}
+.button-validate-delete{
+    border: red solid 1px;
+    color:red;
+}
+.button-validate-modify{
+    border: green solid 1px;
+    color:green;
+}
+.container-button-modify >div{
+    margin: 5px 0;
+    display: inline;
+}
+#lieux-modify input{
+    height: 20px;
+    margin: 2px 0;
+}
+.input-container{
+    margin-top: 5px;
+}
+#lieux-modify .input-container > div{
+    display: grid;
+    grid-template-columns: 150px minmax(auto, 400px);
+}
+#lieux{
+    margin: 5px 0;
+}
+#container-lieux-selected >div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0,0,0,0.2);
+    padding: 2px;
+    margin: 2px;
+
+}
+#container-lieux-selected input{
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
 
 
 @media (max-width: 800px){
     #title{
         display: flex;
         flex-direction: column;
+    }
+}
+@media (max-width: 700px){
+    .wrapper{
+        width: 85%;
+        padding: 25px 20px;
     }
 }

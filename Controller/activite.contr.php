@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Model\Organisation;
 use App\Model\utils\Render;
 
-class Activite extends Controller
+class Activite
 {
     public function index(){
 

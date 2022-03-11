@@ -5,8 +5,11 @@ namespace App\Controller;
 use Exception;
 use App\Model\Organisation;
 use App\Model\utils\Render;
+use App\Controller\utils\ModelController;
 
-class Contact extends Controller
+
+
+class Contact extends ModelController
 {
     public function index(){
 

@@ -13,9 +13,9 @@ class Lieux
         $query = 'SELECT * FROM lieux';
         $requests = $db->findAll($query,[]);
         
-        if(count($requests) == 0 ){
-            throw new Exception("Aucun lieux trouvé");
-        }
+        // if(count($requests) == 0 ){
+        //     throw new Exception("Aucun lieux trouvé");
+        // }
 
         return $requests;
     }
@@ -30,8 +30,17 @@ class Lieux
     public function setHebergeur(array $array){
         $db = new Database();
 
-        $query = 'INSERT INTO hebergeur(publication_id, lieux_id) VALUES(:publication_id, :lieux_id)';
+        $query = 'INSERT INTO hebergeur(publication_id, lieux_id, date, time) VALUES(:publication_id, :lieux_id, :date, :time)';
         $db->action($query,$array);
+
+    }
+    public function getHebergeurJoinLieux(){
+        $db = new Database();
+
+        $query = 'SELECT hebergeur.publication_id, hebergeur.date, hebergeur.time, lieux.* FROM hebergeur INNER JOIN lieux ON lieux.lieux_id = hebergeur.lieux_id'; 
+        $request = $db->findAll($query,[]);
+
+        return $request;
 
     }
     public function updateLieux(array $array){

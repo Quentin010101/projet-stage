@@ -5,8 +5,9 @@ namespace App\Controller;
 use App\Model\Membre;
 use App\Model\Organisation;
 use App\Model\utils\Render;
+use App\Controller\utils\ModelController;
 
-class Admin extends Controller
+class Admin extends ModelController
 {
     public function index()
     {

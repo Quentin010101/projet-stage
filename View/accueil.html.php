@@ -28,7 +28,7 @@
                         <hr>
                         <div>
                             <h5>Actualité postée le: <span><?php $date = new DateTime($a['date_publication']);
-                                echo htmlspecialchars($date->format('d-m-Y')); ?></span></h5>
+                                                            echo htmlspecialchars($date->format('d-m-Y')); ?></span></h5>
                         </div>
                     </article>
                 <?php
@@ -57,7 +57,7 @@
                                 echo htmlspecialchars($date->format('d-m-Y')); ?></h4>
                         </div>
                         <hr>
-                        <div  class="content-container">
+                        <div class="content-container">
                             <figure>
                                 <img src="<?php echo 'upload/' . htmlspecialchars($e['illustration']); ?>" alt="actualite-img">
                             </figure>
@@ -66,9 +66,24 @@
                             </p>
                         </div>
                         <hr>
+                        <div class="evenement-lieux">
+                            <?php if (isset($lieux) && !empty($lieux)) :
+                                foreach ($lieux as $l) :
+                                    if ($l['publication_id'] == $e['publication_id']) :
+                            ?>
+                                <div>
+                                    <p>Le: <span><?php echo date_format(new DateTime(htmlspecialchars($l['date'])), 'd-m-Y'); ?></span> à: <span><?php echo date_format(new DateTime(htmlspecialchars($l['time'])),'H:m'); ?></span></p>
+                                    <p><span><?php echo htmlspecialchars($l['nom']); ?></span> - <span><?php echo htmlspecialchars($l['ville']) . ' ' . htmlspecialchars($l['code_postale']); ?></span></p>
+                                </div>
+                            <?php
+                                    endif;
+                                endforeach;
+                            endif;
+                            ?>
+                        </div>
                         <div>
                             <h5>Evènement postée le: <span><?php $date = new DateTime($e['date_publication']);
-                                echo htmlspecialchars($date->format('d-m-Y')); ?></span></h5>
+                                                            echo htmlspecialchars($date->format('d-m-Y')); ?></span></h5>
                         </div>
                     </article>
                 <?php

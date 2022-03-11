@@ -134,6 +134,9 @@ header .inscription .lien-role{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
+    header .inscription span{
+        display: none;
+    }
 }
 @media (max-width: 400px){
     footer ul{

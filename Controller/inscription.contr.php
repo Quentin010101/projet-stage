@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Model\Utilisateur;
 use App\Model\utils\Render;
+use App\Controller\utils\ModelController;
 
-class Inscription extends Controller
+
+
+class Inscription extends ModelController
 {
     public function index()
     {

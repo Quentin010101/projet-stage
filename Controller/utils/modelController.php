@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\utils;
 
-abstract class Controller
+abstract class ModelController
 {
     protected function set_message($message, $type , $code = 'flash')
     {

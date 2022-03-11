@@ -5,8 +5,11 @@ namespace App\Controller;
 use App\Model\Utilisateur;
 use App\Model\utils\Render;
 use Exception;
+use App\Controller\utils\ModelController;
 
-class Login extends Controller
+
+
+class Login extends ModelController
 {
     public function index()
     {

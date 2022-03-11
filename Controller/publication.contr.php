@@ -6,8 +6,10 @@ use App\Model\Lieux;
 use App\Model\Publication as publi;
 use App\Model\Organisation;
 use App\Model\utils\Render;
+use App\Controller\utils\ModelController;
 
-class Publication extends Controller
+
+class Publication extends ModelController
 {
     public function index()
     {
@@ -29,7 +31,7 @@ class Publication extends Controller
 
         //Gerer les message
         $messages = $this->get_message();
-        
+
         // Récupération du logo
         $organisation = new Organisation;
         $logo = $organisation->getLogo();
@@ -51,17 +53,36 @@ class Publication extends Controller
                 $check = $this->checkPublication($_POST['titre'], $_POST['sous-titre'], $_POST['date-event'], $_POST['text'], $_FILES['file']);
 
                 if ($check) :
+
                     $publication = new publi();
-                    
+
                     $fileName = $this->uploadFile($_FILES['file']);
-                    
+
                     $publication_id = $publication->set($_POST['date-event'], $_POST['titre'], $_POST['sous-titre'], $_POST['text'], $fileName, $_SESSION['user-type']);
 
-                    if($_SESSION['user-type'] == 'redacteur-evenement' && isset($_POST['lieux']) && !empty($_POST['lieux'])):
-                        $lieux_id = $_POST['lieux'];
-                        $array = ['publication_id' => $publication_id[0], 'lieux_id' => $lieux_id];
-                        $hebergeur = new Lieux();
-                        $hebergeur->setHebergeur($array);
+                    if ($_SESSION['user-type'] == 'redacteur-evenement') :
+                        if (isset($_POST['lieux']) && isset($_POST['date']) && isset($_POST['time'])) :
+                            if (!empty($_POST['lieux']) && !empty($_POST['date']) && !empty($_POST['time']) && count($_POST['lieux']) == count($_POST['date']) && count($_POST['lieux']) === count($_POST['time'])) :
+                                $All_lieux = $_POST['lieux'];
+                                $All_date = $_POST['date'];
+                                $All_time = $_POST['time'];
+
+                                for($i = 0; $i < count($All_lieux); $i++):
+                                    $lieux = $All_lieux[$i];
+                                    $date = $All_date[$i];
+                                    $time = $All_time[$i];
+
+                                    
+                                    $array = ['publication_id' => $publication_id[0], 'lieux_id' => $lieux, 'date' => $date, 'time' => $time];
+                                    $hebergeur = new Lieux();
+                                    $hebergeur->setHebergeur($array);
+                                endfor;
+                            else :
+                                $this->set_message('Vous devez renseigner tout les champs concernant les lieux', 'error');
+                                return header('Location: /publication');
+                                exit;
+                            endif;
+                        endif;
                     endif;
 
                     $this->set_message('Votre publication à bien été posté', 'success');
@@ -121,16 +142,17 @@ class Publication extends Controller
             $this->set_message($message, 'error', 'set');
         endif;
 
-        if ($fileSize > 5000000):
+        if ($fileSize > 5000000) :
             $result = false;
-            $message = "La taille de l'illustration ne doit pas dépasser 5Mo"; 
+            $message = "La taille de l'illustration ne doit pas dépasser 5Mo";
             $this->set_message($message, 'error', 'set');
         endif;
 
         return $result;
     }
 
-    public function uploadFile($file){
+    public function uploadFile($file)
+    {
         $upload_dir = '../Public/upload';
         $filePath = pathinfo($file['name']);
         $fileExtension = strtolower($filePath['extension']);

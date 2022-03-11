@@ -5,8 +5,11 @@ namespace App\Controller;
 use App\Model\Organisation;
 use App\Model\Utilisateur as ModelUtilisateur;
 use App\Model\utils\Render;
+use App\Controller\utils\ModelController;
 
-class Utilisateur extends Controller
+
+
+class Utilisateur extends ModelController
 {
     public function index()
     {

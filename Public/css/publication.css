@@ -9,6 +9,8 @@ section{
 }
 section > div{
     margin: 20px 0px;
+    display: flex;
+    gap: 10px;
 }
 h2{
     color: rgba(255, 255, 255, 0.9);
@@ -18,6 +20,7 @@ h2{
 article{
     padding: 30px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    width: 100%;
 }
 figure{
     float: left;
@@ -48,6 +51,28 @@ article h3{
 }
 article h4{
     color: var(--c-s-1);
+}
+.map-container{
+    padding: 30px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.evenement-lieux{
+    background-color: var(--c-p-1);
+    padding: 5px 5%;
+}
+.evenement-lieux p{
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+}
+.evenement-lieux span{
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+
 }
 @media (max-width: 800px){
     section{

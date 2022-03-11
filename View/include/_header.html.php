@@ -35,19 +35,19 @@
             if (isset($_SESSION['user-type'])) :
                 if ($_SESSION['user-type'] === 'admin') :
             ?>
-                        <a class="lien-role" href="/admin">Espace Administrateur</a>
+                        <a class="lien-role" href="/admin"><i class="fas fa-user"><span> Espace Administrateur</span></a>
                 <?php
                 elseif ($_SESSION['user-type'] === 'redacteur-evenement') :
                 ?>
-                        <a class="lien-role" href="/publication"><i class="fas fa-pen"></i> Ecriture Evènements</a>
+                        <a class="lien-role" href="/publication"><i class="fas fa-pen"></i><span> Ecriture Evènements</span> </a>
                 <?php
                 elseif ($_SESSION['user-type'] === 'redacteur-actualite') :
                 ?>
-                        <a class="lien-role" href="/publication"><i class="fas fa-pen"></i> Ecriture Actualités</a>
+                        <a class="lien-role" href="/publication"><i class="fas fa-pen"></i><span> Ecriture Actualités</span> </a>
                 <?php
                 elseif ($_SESSION['user-type'] === 'user') :
                 ?>
-                        <a class="lien-role" href="/utilisateur"><i class="fas fa-user"></i> Espace Utilisateur</a>
+                        <a class="lien-role" href="/utilisateur"><i class="fas fa-user"></i><span> Espace Utilisateur</span> </a>
             <?php
                 endif;
             endif;
