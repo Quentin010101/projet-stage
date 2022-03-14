@@ -27,8 +27,9 @@ class Lieux
                 $lieux = $lieu->getLieux();
 
                 echo '<option value="">--Selectionner un lieu</option>';
+                echo '<option value="">Aucun lieu disponible</option>';
                 foreach ($lieux as $l) :
-                    echo  '<option>' .
+                    echo  '<option value="' . htmlspecialchars($l['lieux_id']) . '" >' .
                         htmlspecialchars($l['ville']) . ' - ' . htmlspecialchars($l['nom'])
                         . '</option>';
                 endforeach;
