@@ -37,12 +37,13 @@ class Database
 
 
         $i = 0;
-        foreach ($this->variables as $variable) :
+        foreach ($this->variables as $key => &$variable) :
             $stmt->bindParam(':' . $keys[$i], $variable);
             $i++;
         endforeach;
+        $stmt->execute();
 
-        $stmt->execute($this->variables);
+
         return $stmt;
     }
 
@@ -55,6 +56,7 @@ class Database
         $stmt = $this->query();
 
         $request = $stmt->fetchAll();
+
         return $request;
     }
     public function findOne(string $statement, array $variables)

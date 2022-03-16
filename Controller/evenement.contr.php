@@ -31,7 +31,6 @@ class Evenement
     private function createGeoJson($evenement, $lieux)
     {
         $geojson = array('type' => 'FeatureCollection', 'features' => array());
-
         foreach ($evenement as $e) :
             foreach ($lieux as $l) :
                 if ($l['publication_id'] == $e['publication_id']) :

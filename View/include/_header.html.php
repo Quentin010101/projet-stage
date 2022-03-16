@@ -35,7 +35,7 @@
             if (isset($_SESSION['user-type'])) :
                 if ($_SESSION['user-type'] === 'admin') :
             ?>
-                        <a class="lien-role" href="/admin"><i class="fas fa-user"><span> Espace Administrateur</span></a>
+                        <a class="lien-role" href="/admin"><i class="fas fa-user"></i><span> Espace Administrateur</span></a>
                 <?php
                 elseif ($_SESSION['user-type'] === 'redacteur-evenement') :
                 ?>
