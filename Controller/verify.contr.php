@@ -21,7 +21,7 @@ class Verify extends ModelController
             $utilisateur = new Utilisateur();
             $token_confirmation = $utilisateur->confirmUser($array);
 
-            if ($token === $token_confirmation['token']) :
+            if ($token_confirmation['token'] !== NULL && $token === $token_confirmation['token']) :
 
                 $array = compact('utilisateur_id');
                 $utilisateur->activateAccount($array);
