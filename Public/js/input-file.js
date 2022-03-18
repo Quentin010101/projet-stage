@@ -5,7 +5,9 @@ function init(){
     const fileSize = document.getElementById('input-file-size')
     
     input.addEventListener('change', function(event){
+
         const file = event.target.files
+
         fileName.innerText = 'nom: ' + file[0].name
         fileSize.innerText = 'taille: ' + file[0].size + ' ko'
     })

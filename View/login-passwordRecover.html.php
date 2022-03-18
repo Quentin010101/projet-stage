@@ -7,11 +7,11 @@
         
         <form action="/verify/passwordRecoverPost" method="post">
             <div>
-                <label for="">Email</label>
+                <label for="">Mot de passe</label>
                 <input type="password" name="password" placeholder="Entrer un nouveau password">
             </div>
             <div>
-                <label for="">Email confirmation</label>
+                <label for="">Mot de passe confirmation</label>
                 <input type="password" name="password-confirmation" placeholder="Confirmer votre password">
             </div>
             <div>
