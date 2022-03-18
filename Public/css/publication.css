@@ -74,14 +74,44 @@ article h4{
     color: rgb(255, 255, 255);
 
 }
+@media (max-width: 1300px){
+    article{
+        width:auto;
+        box-shadow: none;
+    }
+    .map-container{
+        box-shadow: none;
+        padding: 10px 30px 30px 30px;
+    }
+    section > div{
+        margin: 20px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    }
+}
+
 @media (max-width: 800px){
     section{
         margin: 20px 5%;
     }
+
 }
 @media (max-width: 600px){
     section{
         margin: 20px 1%;
+    }
+    .map-container{
+        padding: 5px;
+    }
+    .map-container .mapboxgl-map{
+        align-self: center;
+        width: 300px !important;
+        height: 280px !important;
+    }
+    article{
+        padding: 10px;
     }
 }
 

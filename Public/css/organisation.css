@@ -128,9 +128,16 @@ h2{
     .information-general-container{
         flex-direction: column;
     }
+    .mapboxgl-map{
+        width: 300px !important;
+        height: 280px !important;
+    }
 }
 @media (max-width: 500px){
     section{
         padding: 10px 0;
+    }
+    .inner-section{
+        padding: 5px;
     }
 }
