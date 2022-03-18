@@ -1,8 +1,11 @@
 <?php $pageTitle = 'Confirmation'; ?>
 <?php $pageCss = 'confirmation.css'; ?>
 
-<main>
-    <div>
+<main>  
+    <div class="homePage">
+        <a href="/home"><i class="fas fa-house"></i>Retour à la page d'accueil</a>
+    </div>
+    <div class="account-create">
         <?php
         if (isset($messages) && !empty($messages)) :
             if (isset($variable) && !empty($variable)) :

@@ -20,8 +20,15 @@ class Verify extends ModelController
             $array = compact('utilisateur_id');
             $utilisateur = new Utilisateur();
             $token_confirmation = $utilisateur->confirmUser($array);
-
-            if ($token_confirmation['token'] !== NULL && $token === $token_confirmation['token']) :
+            if($token_confirmation === false):
+                throw new Exception('Une erreur est survenu.');
+                exit;
+            endif;
+            if(is_null($token_confirmation['token'])):
+                throw new Exception('Une erreur est survenu.');
+                exit;
+            endif;
+            if ($token === $token_confirmation['token']) :
 
                 $array = compact('utilisateur_id');
                 $utilisateur->activateAccount($array);
