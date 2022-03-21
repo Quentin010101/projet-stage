@@ -1,6 +1,5 @@
 <?php $pageTitle = 'Formulaire de contact'; ?>
 <?php $pageCss = 'login.css'; ?>
-
 <main>
 <section id="contact" class="flex">
     <div class="homePage">
@@ -12,15 +11,15 @@
                 <form action="/contact/contactPost" method="post">
                     <div>
                         <label for="nom">Nom</label>
-                        <input id="nom" type="text" name="nom" placeholder="Entrez votre nom" >
+                        <input id="nom" type="text" name="nom" placeholder="Entrez votre nom" value="<?php if(isset($user) && !empty($user)): echo htmlspecialchars($user['nom']); endif;?>"  >
                     </div>
                     <div>
                         <label for="prenom">Prénom</label>
-                        <input id="prenom" type="text" name="prenom" placeholder="Entrez votre prénom" >
+                        <input id="prenom" type="text" name="prenom" placeholder="Entrez votre prénom" value="<?php if(isset($user) && !empty($user)): echo htmlspecialchars($user['prenom']); endif;?>" >
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input id="email" type="email" name="email" placeholder="Entrez votre email">
+                        <input id="email" type="email" name="email" placeholder="Entrez votre email" value="<?php if(isset($user) && !empty($user)): echo htmlspecialchars($user['email']); endif;?>" >
                     </div>
                     <div>
                         <label for="tel">Tel</label>

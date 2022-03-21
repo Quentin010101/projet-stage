@@ -17,7 +17,7 @@
                     ?>
                         <p>Un email vous à été envoyé à: <span><?php if ($m['code'] == 'confirmation') : echo htmlspecialchars($m['message']);
                                                                                 endif; ?></span></p>
-                        <p>Pensez à vérifier vos couriers indésirables</p>
+                        <p>Pensez à vérifier vos courriers indésirables</p>
                     <?php
                     endforeach;
 
@@ -30,7 +30,7 @@
                         <p>Votre compte à bien été crée.</p>
                         <p>Un email de confirmation vous à été envoyé à: <span><?php if ($m['code'] == 'confirmation') : echo htmlspecialchars($m['message']);
                                                                                 endif; ?></span></p>
-                        <p>Pensez à vérifier vos couriers indésirables</p>
+                        <p>Pensez à vérifier vos courriers indésirables</p>
         <?php
                     endforeach;
                 endif;

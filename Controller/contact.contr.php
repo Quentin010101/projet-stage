@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Exception;
+use App\Model\Utilisateur;
 use App\Model\Organisation;
 use App\Model\utils\Render;
 use App\Controller\utils\ModelController;
@@ -13,11 +14,19 @@ class Contact extends ModelController
 {
     public function index(){
 
+        
         $messages = $this->get_message();
-
+        
         $view = 'formulaire-contact';
         $array = compact('messages');
 
+        if(isset($_SESSION['user-type']) && !empty($_SESSION['user-type'])):
+            $users = new Utilisateur;
+            $utilisateur_id = $_SESSION['user-id'];
+            $arr = compact('utilisateur_id');
+            $user = $users->getUserById($arr);
+            $array = compact('messages', 'user');
+        endif;
         Render::renderer($view, $array);
 
     }

@@ -14,6 +14,14 @@ class Utilisateur
 
         return $request;
     }
+    public function getUserById($array){
+        $query = 'SELECT nom, prenom, email, type FROM utilisateur WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->findOne($query, $array);
+
+        return $request;
+    }
 
     public function getPassword($array){
         $query = 'SELECT password FROM utilisateur WHERE email = :email';
