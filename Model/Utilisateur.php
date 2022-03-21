@@ -110,4 +110,34 @@ class Utilisateur
         $request = $db->action($query, $array);
     }
 
+    public function demandAdhesion($array){
+        $query = 'UPDATE utilisateur SET date_naissance = :date_naissance, adresse = :adresse, photo_identite = :photo_identite, adhesion = :type_adhesion WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->action($query, $array);
+    }
+
+    public function getUserAdhesionData($array){
+        $query = 'SELECT date_naissance, adresse, photo_identite, adhesion FROM utilisateur WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->findone($query, $array);
+
+        return $request;
+    }
+
+    public function updateDataAdhesion($array){
+        $query = 'UPDATE utilisateur SET date_naissance = :date_naissance, adresse = :adresse WHERE utilisateur_id = :utilisateur_id';
+        
+        $db = new Database();
+        $request = $db->action($query, $array);
+    }
+
+    public function updatePhotoAdhesion($array){
+        $query = 'UPDATE utilisateur SET photo_identite = :photo_identite WHERE utilisateur_id = :utilisateur_id';
+        
+        $db = new Database();
+        $request = $db->action($query, $array);
+    }
+
 }
