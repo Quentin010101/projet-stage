@@ -48,6 +48,7 @@ class Login extends ModelController
             $this->authentification($array);
 
         else :
+            $this->set_message('Tous les champs doivent être remplit', 'error');
             header('Location: /login');
             exit;
         endif;

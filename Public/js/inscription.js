@@ -14,10 +14,10 @@ function init(){
         element.addEventListener('input', function(){
             let inputValue = element.value 
             if(inputValue != ''){
-                element.previousElementSibling.classList.remove('span-invalidate')
-                element.previousElementSibling.classList.add('span-validate')
+                element.parentElement.previousElementSibling.classList.remove('span-invalidate')
+                element.parentElement.previousElementSibling.classList.add('span-validate')
             }else{
-                element.previousElementSibling.classList.remove('span-validate')
+                element.parentElement.previousElementSibling.classList.remove('span-validate')
             }
 
         })
@@ -75,7 +75,7 @@ function init(){
         let result = true
 
         for(let i = 0; i < spanObligatoire.length; i++){
-            if(spanObligatoire[i].nextElementSibling.value == ''){
+            if(spanObligatoire[i].nextElementSibling.querySelector('input').value == ''){
                 spanObligatoire[i].classList.add('span-invalidate')
                 result = false
             }else{
@@ -109,6 +109,8 @@ function init(){
         if(passwordValue !== passwordConfirmationValue){
             confirmation.style.display = 'inline'
             result = false
+        }else{
+            confirmation.style.display = 'none'
         }
 
         return result

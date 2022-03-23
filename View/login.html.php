@@ -1,5 +1,7 @@
 <?php $pageTitle = 'Login' ?>
 <?php $pageCss = 'login.css' ?>
+<?php $pageScript[] = "input-password.js" ?>
+
 
 <main>
     <div class="homePage">
@@ -7,7 +9,7 @@
     </div>
     <div class="wrapper">
         <h1>Se connecter</h1>
-        
+
         <form action="/login/loginPost" method="post">
             <div>
                 <label for="">Email:</label>
@@ -15,7 +17,11 @@
             </div>
             <div>
                 <label for="">Mot de passe:</label>
-                <input type="password" name="password" placeholder="Entrer votre Password">
+                <div class="password-icon">
+                    <input type="password" name="password" placeholder="Entrer votre Password">
+                    <i class="fas fa-eye-slash eye"></i>
+                    <i class="fas fa-eye eye"></i>
+                </div>
             </div>
             <div>
                 <input type="submit" value="Valider">
@@ -28,6 +34,3 @@
 </main>
 
 <?php include('../View/include/_message.html.php'); ?>
-
-
-

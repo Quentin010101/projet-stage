@@ -1,7 +1,7 @@
 <?php $pageTitle = 'Inscription' ?>
 <?php $pageCss = 'login.css' ?>
 <?php $pageScript[] = "inscription.js" ?>
-
+<?php $pageScript[] = "input-password.js" ?>
 
 <main>
     <div class="homePage">
@@ -13,30 +13,44 @@
         <form id="form-inscription" action="/inscription/logupPost" method="post">
             <div>
                 <label for="">Nom:</label>
-                <span class="obligation" >* Champs obligatoire</span>
-                <input class='input' type="text" name="nom" placeholder="Entrer votre Nom">
+                <span class="obligation">* Champs obligatoire</span>
+                <div>
+                    <input class='input' type="text" name="nom" placeholder="Entrer votre Nom">
+                </div>
             </div>
             <div>
                 <label for="">Prénom:</label>
-                <span class="obligation" >* Champs obligatoire</span>
-                <input class='input' type="text" name="prenom" placeholder="Entrer votre Prénom">
+                <span class="obligation">* Champs obligatoire</span>
+                <div>
+                    <input class='input' type="text" name="prenom" placeholder="Entrer votre Prénom">
+                </div>
             </div>
             <div>
                 <label for="">Email:</label>
-                <span class="obligation" >* Champs obligatoire</span>
-                <input class='input' type="email" name="email" placeholder="Entrer votre Email">
+                <span class="obligation">* Champs obligatoire</span>
+                <div>
+                    <input class='input' type="email" name="email" placeholder="Entrer votre Email">
+                </div>
             </div>
             <div>
                 <label for="">Mot de passe:</label>
-                <span class="span-password" >* Doit contenir au moins:<br> <span id="span-check-num"  class='obligation-single'><span class='tiret'>-</span><i class="fas fa-check"></i> un numérique</span> <br> <span id="span-check-letter" class='obligation-single'><span class='tiret'>-</span><i class="fas fa-check"></i> une lettre</span> <br> <span id="span-check-carac" class='obligation-single'><span class='tiret'>-</span><i class="fas fa-check"></i> 6 caractères</span></span>
-                <span class="obligation" >* Champs obligatoire</span>
-                <input class='input' id="password" type="password" name="password" placeholder="Entrer votre Password">
+                <span class="span-password">* Doit contenir au moins:<br> <span id="span-check-num" class='obligation-single'><span class='tiret'>-</span><i class="fas fa-check"></i> un numérique</span> <br> <span id="span-check-letter" class='obligation-single'><span class='tiret'>-</span><i class="fas fa-check"></i> une lettre</span> <br> <span id="span-check-carac" class='obligation-single'><span class='tiret'>-</span><i class="fas fa-check"></i> 6 caractères</span></span>
+                <span class="obligation">* Champs obligatoire</span>
+                <div class="password-icon">
+                    <input class='input' id="password" type="password" name="password" placeholder="Entrer votre Password">
+                    <i class="fas fa-eye-slash eye"></i>
+                    <i class="fas fa-eye eye"></i>
+                </div>
             </div>
             <div>
                 <label for="">Confirmation mot de passe:</label>
                 <span class="confirmation">* Vos mots de passe ne sont pas identique</span>
-                <span class="obligation" >* Champs obligatoire</span>
-                <input class='input' id="passwordConfirmation" type="password" name="password-confirmation" placeholder="Entrer votre Password">
+                <span class="obligation">* Champs obligatoire</span>
+                <div class="password-icon">
+                    <input class='input' id="passwordConfirmation" type="password" name="password-confirmation" placeholder="Entrer votre Password">
+                    <i class="fas fa-eye-slash eye"></i>
+                    <i class="fas fa-eye eye"></i>
+                </div>
             </div>
             <div class="message-error">
                 <?php if (isset($messages) && !empty($messages)) :
