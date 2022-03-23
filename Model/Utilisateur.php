@@ -117,6 +117,19 @@ class Utilisateur
         $request = $db->action($query, $array);
     }
 
+    public function validateAdhesion($array){
+        $query = 'UPDATE utilisateur SET adhesion = "accepter" WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->action($query, $array);
+    }
+    public function invalidateAdhesion($array){
+        $query = 'UPDATE utilisateur SET adhesion = "refuser" WHERE utilisateur_id = :utilisateur_id';
+
+        $db = new Database();
+        $request = $db->action($query, $array);
+    }
+
     public function getUserAdhesionData($array){
         $query = 'SELECT date_naissance, adresse, photo_identite, adhesion FROM utilisateur WHERE utilisateur_id = :utilisateur_id';
 
@@ -138,6 +151,14 @@ class Utilisateur
         
         $db = new Database();
         $request = $db->action($query, $array);
+    }
+
+    public function getAllUserAdhesionDemand($array = []){
+        $query = 'SELECT utilisateur_id, nom, prenom, date_naissance FROM utilisateur WHERE adhesion = "demande"';
+        $db = new Database();
+        $request = $db->findAll($query, $array);
+
+        return $request;
     }
 
 }

@@ -157,6 +157,18 @@ h3 span{
 .container_identite .container-file > div{
     margin-top: 15px;
 }
+.formulaire-adhesion{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin: 2px 0;
+}
+.formulaire-adhesion p{
+    font-weight: 600;
+}
+.formulaire-adhesion span{
+    font-weight: 400;
+}
 
 @media (max-width: 1400px){
     #membre-modify form{
@@ -180,5 +192,8 @@ h3 span{
     }
     .tableau {
         grid-template-columns: repeat(3, 25vw);
+    }
+    .formulaire-adhesion{
+        flex-direction: column;
     }
 }

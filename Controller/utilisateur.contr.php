@@ -41,6 +41,30 @@ class Utilisateur extends ModelController
         Render::renderer($view, $array);
     }
 
+    public function carte_membre($id){
+
+        $utilisateur_id = $id;
+        $arrayId = compact('utilisateur_id');
+        $utilisateurs = new ModelUtilisateur();
+        $utilisateur = $utilisateurs->getUserById($arrayId);
+        $adhesionData = $utilisateurs->getUserAdhesionData($arrayId);
+
+        
+        if($adhesionData['adhesion'] === 'accepter'):
+        $organisations = new Organisation();
+        $organisation = $organisations->get();
+
+        $array = compact('utilisateur','adhesionData', 'organisation');
+        $view = 'carte-membre';
+        Render::renderer($view, $array);
+
+        else:
+            header('Location: /home');
+            exit;
+        endif;
+
+    }
+
     public function update()
     {
         if ($_SESSION['user-type'] != 'user') :
@@ -140,7 +164,8 @@ class Utilisateur extends ModelController
 
 
                 $this->set_message('Votre demande d\adhesion à bien été envoyé', 'success');
-
+                header('Location: /utilisateur');
+                exit;
             else :
                 $this->set_message('Vous devez remplir tous les champs.', 'error');
                 header('Location: /utilisateur');
@@ -150,6 +175,9 @@ class Utilisateur extends ModelController
             header('Location: /utilisateur');
             exit;
         endif;
+
+        header('Location: /utilisateur');
+        exit;
     }
 
     private function checkUser($nom, $prenom, $email){

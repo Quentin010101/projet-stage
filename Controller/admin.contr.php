@@ -6,6 +6,7 @@ use App\Model\Membre;
 use App\Model\Organisation;
 use App\Model\utils\Render;
 use App\Controller\utils\ModelController;
+use App\Model\Utilisateur;
 
 class Admin extends ModelController
 {
@@ -28,8 +29,12 @@ class Admin extends ModelController
         $organisation = $o->get();
         $logo = $o->getLogo();
 
+        //Récuperation demande d'adhésion
+        $user = new Utilisateur();
+        $users = $user->getAllUserAdhesionDemand();
+
         $view = 'admin';
-        $array = compact('organisation', 'membres', 'logo', 'messages');
+        $array = compact('organisation', 'membres', 'logo', 'messages', 'users');
         Render::renderer($view, $array);
     }
 
@@ -155,6 +160,36 @@ class Admin extends ModelController
 
             endif;
         endif;
+        return header('Location: /admin');
+        exit;
+    }
+
+    public function adminAdhesion(){
+
+        //Accepter demande adhesion
+        if((isset($_POST['validate']) && isset($_POST['id'])) && (!empty($_POST['validate']) && !empty($_POST['id']))):
+            
+            $utilisateur_id = $_POST['id'];
+            $array = compact('utilisateur_id');
+
+            $user = new Utilisateur();
+            $user->validateAdhesion($array);
+            $this->set_message("La demande d'adhesion à bien été accepté.", 'success');
+            
+        endif;
+
+        //Refuser demande adhesion
+        if((isset($_POST['invalidate']) && isset($_POST['id'])) && (!empty($_POST['invalidate']) && !empty($_POST['id']))):
+
+            $utilisateur_id = $_POST['id'];
+            $array = compact('utilisateur_id');
+
+            $user = new Utilisateur();
+            $user->invalidateAdhesion($array);
+            $this->set_message("La demande d'adhesion à bien été refusé.", 'success');
+
+        endif;
+
         return header('Location: /admin');
         exit;
     }

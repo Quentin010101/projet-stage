@@ -121,6 +121,37 @@ include('../View/include/_header.html.php');
             </div>
         </div>
     </section>
+    <section id="membre-adhesion">
+        <div class="wrapper">
+            <h3>Valider les demandes d'adhésions <span><i class="fas fa-angle-down"></i></span></h3>
+            <div  class="menu">
+                <?php 
+                    if(isset($users) && !empty($users)):
+                        foreach($users as $u):
+                ?>
+                <form action="/admin/adminAdhesion" method="post" class='formulaire-adhesion'>
+                    <p><?php echo htmlspecialchars($u['nom']); ?></p>
+                    <p><?php echo htmlspecialchars($u['prenom']); ?></p>
+                    <p><span> date de naissance:</span> <?php $date= new DateTime(htmlspecialchars($u['date_naissance'])); echo $date->format('d-m-Y'); ?></p>
+                    <input type="hidden" value="<?php echo htmlspecialchars($u['utilisateur_id'])?>" name="id">
+                    <div>
+                        <input type="submit" value="Valider l'adhésion" name="validate" class="validate">
+                    </div>
+                    <div>
+                        <input type="submit" value="Refuser l'afhésion" name="invalidate" class="inValidate">
+                    </div>
+                </form>
+                <?php
+                    endforeach;
+                else:
+                        ?>
+                            <p>Aucune demande d'adhésion en attente</p>
+                        <?php
+                endif;
+                ?>
+            </div>
+        </div>
+    </section>
 </main>
 
 <?php include('../View/include/_message.html.php'); ?>
