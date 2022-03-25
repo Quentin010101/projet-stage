@@ -1,7 +1,7 @@
 
 
 //--------Input Section set
-let inputNom = document.getElementById('nom').value
+let inputNom = document.getElementById('nom')
 let inputVille = document.getElementById('ville')
 let inputCode = document.getElementById('code')
 let inputLat = document.getElementById('lat')
