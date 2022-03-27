@@ -32,17 +32,16 @@ class Database
         // prepare
         $stmt = $this->getPDO()->prepare($this->statement);
 
-        //stocke les clefs des variable pour la fonction bindParam
+        //stocke les clefs des variables pour la fonction bindParam
         $keys = array_keys($this->variables);
 
 
-        $i = 0;
-        foreach ($this->variables as $key => &$variable) :
-            $stmt->bindParam(':' . $keys[$i], $variable);
-            $i++;
+        foreach ($keys as $key) :
+
+            $stmt->bindParam(':' . $key, $this->variables[$key]);
+
         endforeach;
         $stmt->execute();
-
 
         return $stmt;
     }
